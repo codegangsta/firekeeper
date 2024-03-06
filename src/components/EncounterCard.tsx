@@ -1,3 +1,5 @@
+import { cn } from "../utils/styles";
+
 interface TileItemsProps {
   id: number;
   top: number;
@@ -12,6 +14,47 @@ function TileItems(props: TileItemsProps) {
       style={{ width: 256, height: 242, top: top, left: left }}
     >
       <img src="/images/tile-items.png" />
+      {id === 1 && (
+        <>
+          <div
+            className="absolute flex items-center justify-center"
+            style={{ width: 100, height: 100, bottom: 5, right: 30 }}
+          >
+            <span
+              className={cn(
+                "text-dark-souls-orange font-semibold font-dark-souls text-6xl scale-125 blur saturate-150"
+              )}
+            >
+              {id}
+            </span>
+          </div>
+          <div
+            className="absolute flex items-center justify-center"
+            style={{ width: 100, height: 100, bottom: 5, right: 30 }}
+          >
+            <span
+              className={cn(
+                "text-dark-souls-orange font-semibold font-dark-souls text-6xl scale-100 blur-sm"
+              )}
+            >
+              {id}
+            </span>
+          </div>
+        </>
+      )}
+      <div
+        className="absolute flex items-center justify-center"
+        style={{ width: 100, height: 100, bottom: 5, right: 30 }}
+      >
+        <span
+          className={cn(
+            "text-dark-souls-pale font-dark-souls text-6xl",
+            id != 1 ? "drop-shadow-md" : ""
+          )}
+        >
+          {id}
+        </span>
+      </div>
     </div>
   );
 }
