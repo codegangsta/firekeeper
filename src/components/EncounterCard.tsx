@@ -1,3 +1,4 @@
+import type { PropsWithChildren } from "react";
 import { cn } from "../utils/styles";
 
 interface TileItemsProps {
@@ -97,65 +98,100 @@ function TileItems(props: TileItemsProps) {
 
 interface TileProps {
   id: number;
+  entrance?: "left" | "right" | "top" | "bottom";
+  exit: "left" | "right" | "top" | "bottom";
 }
 
-function Tile(props: TileProps) {
-  const { id } = props;
-  return (
-    <div className="relative" style={{ width: 224, height: 224 }}>
-      {/*Borders*/}
-      <div className="absolute inset-x-3 top-0 h-0.5 bg-dark-souls-brown"></div>
-      <div className="absolute inset-x-3 bottom-0 h-0.5 bg-dark-souls-brown"></div>
-      <div className="absolute inset-y-3 left-0 w-0.5 bg-dark-souls-brown"></div>
-      <div className="absolute inset-y-3 right-0 w-0.5 bg-dark-souls-brown"></div>
+function Tile(props: PropsWithChildren<TileProps>) {
+  const { id, entrance, exit, children } = props;
 
-      {/*Caps*/}
-      <div className="w-6 h-6 p-1 absolute -top-[13px] -left-[11px]">
-        <img src="/images/cap.png" />
-      </div>
-      <div className="w-6 h-6 p-1 absolute -bottom-[13px] -left-[11px]">
-        <img src="/images/cap.png" />
-      </div>
-      <div className="w-6 h-6 p-1 absolute -top-[13px] -right-[11px]">
-        <img src="/images/cap.png" />
-      </div>
-      <div className="w-6 h-6 p-1 absolute -bottom-[13px] -right-[11px]">
-        <img src="/images/cap.png" />
-      </div>
-      <div className="absolute inset-0 flex flex-col p-6 gap-6">
-        <div className="flex flex-row justify-between">
-          <div className="w-4 h-4 border-[3.5px] border-dark-souls-gold/80 rounded-full"></div>
-          <div className="w-4 h-4 border-[3.5px] border-dark-souls-gold/80 rounded-full"></div>
-          <div className="w-4 h-4 border-[3.5px] border-dark-souls-gold/80 rounded-full"></div>
+  return (
+    <div
+      className={cn(
+        "flex",
+        exit === "left" ? "flex-row-reverse items-end" : "",
+        exit === "right" ? "flex-row" : "",
+        exit === "top" ? "flex-col-reverse items-end" : "",
+        exit === "bottom" ? "flex-col" : ""
+      )}
+    >
+      <div className={cn("relative h-[212px] w-[212px]")}>
+        {/*Borders*/}
+        {(exit !== "top" || !children) && (
+          <div className="absolute inset-x-3 top-0 h-0.5 bg-dark-souls-brown/50"></div>
+        )}
+        {(exit !== "bottom" || !children) && (
+          <div className="absolute inset-x-3 bottom-0 h-0.5 bg-dark-souls-brown/50"></div>
+        )}
+        {(exit !== "left" || !children) && (
+          <div className="absolute inset-y-3 left-0 w-0.5 bg-dark-souls-brown/50"></div>
+        )}
+        {(exit !== "right" || !children) && (
+          <div className="absolute inset-y-3 right-0 w-0.5 bg-dark-souls-brown/50"></div>
+        )}
+
+        {/*Caps*/}
+        {((exit !== "top" && exit !== "left") || !children) && (
+          <img
+            src="/images/cap.png"
+            className="absolute w-4 h-4 -top-2 -left-2"
+          />
+        )}
+        {((exit !== "bottom" && exit !== "left") || !children) && (
+          <img
+            src="/images/cap.png"
+            className="absolute w-4 h-4 -bottom-2 -left-2"
+          />
+        )}
+        {((exit !== "top" && exit !== "right") || !children) && (
+          <img
+            src="/images/cap.png"
+            className="absolute w-4 h-4 -top-2 -right-2"
+          />
+        )}
+        {((exit !== "bottom" && exit !== "right") || !children) && (
+          <img
+            src="/images/cap.png"
+            className="absolute w-4 h-4 -bottom-2 -right-2"
+          />
+        )}
+
+        <div className="absolute inset-0 flex flex-col p-6 gap-6">
+          <div className="flex flex-row justify-between">
+            <div className="w-4 h-4 border-[3.5px] border-dark-souls-gold/80 rounded-full"></div>
+            <div className="w-4 h-4 border-[3.5px] border-dark-souls-gold/80 rounded-full"></div>
+            <div className="w-4 h-4 border-[3.5px] border-dark-souls-gold/80 rounded-full"></div>
+          </div>
+          <div className="flex flex-row justify-around">
+            <div className="w-4 h-4 border-[3.5px] border-dark-souls-gold/80 rounded-full"></div>
+            <div className="w-4 h-4 border-[3.5px] border-dark-souls-gold/80 rounded-full"></div>
+          </div>
+          <div className="flex flex-row justify-between">
+            <div className="w-4 h-4 border-[3.5px] border-dark-souls-gold/80 rounded-full"></div>
+            <div className="w-4 h-4 border-[3.5px] border-dark-souls-gold/0 rounded-full"></div>
+            <div className="w-4 h-4 border-[3.5px] border-dark-souls-gold/80 rounded-full"></div>
+          </div>
+          <div className="flex flex-row justify-around">
+            <div className="w-4 h-4 border-[3.5px] border-dark-souls-gold/80 rounded-full"></div>
+            <div className="w-4 h-4 border-[3.5px] border-dark-souls-gold/80 rounded-full"></div>
+          </div>
+          <div className="flex flex-row justify-between">
+            <div className="w-4 h-4 border-[3.5px] border-dark-souls-gold/80 rounded-full"></div>
+            <div className="w-4 h-4 border-[3.5px] border-dark-souls-gold/80 rounded-full"></div>
+            <div className="w-4 h-4 border-[3.5px] border-dark-souls-gold/80 rounded-full"></div>
+          </div>
         </div>
-        <div className="flex flex-row justify-around">
-          <div className="w-4 h-4 border-[3.5px] border-dark-souls-gold/80 rounded-full"></div>
-          <div className="w-4 h-4 border-[3.5px] border-dark-souls-gold/80 rounded-full"></div>
-        </div>
-        <div className="flex flex-row justify-between">
-          <div className="w-4 h-4 border-[3.5px] border-dark-souls-gold/80 rounded-full"></div>
-          <div className="w-4 h-4 border-[3.5px] border-dark-souls-gold/0 rounded-full"></div>
-          <div className="w-4 h-4 border-[3.5px] border-dark-souls-gold/80 rounded-full"></div>
-        </div>
-        <div className="flex flex-row justify-around">
-          <div className="w-4 h-4 border-[3.5px] border-dark-souls-gold/80 rounded-full"></div>
-          <div className="w-4 h-4 border-[3.5px] border-dark-souls-gold/80 rounded-full"></div>
-        </div>
-        <div className="flex flex-row justify-between">
-          <div className="w-4 h-4 border-[3.5px] border-dark-souls-gold/80 rounded-full"></div>
-          <div className="w-4 h-4 border-[3.5px] border-dark-souls-gold/80 rounded-full"></div>
-          <div className="w-4 h-4 border-[3.5px] border-dark-souls-gold/80 rounded-full"></div>
+        <div className="absolute inset-0 flex items-center justify-center">
+          <span
+            className={cn(
+              "text-dark-souls-brown/40 font-dark-souls text-8xl drop-shadow-md"
+            )}
+          >
+            {id}
+          </span>
         </div>
       </div>
-      <div className="absolute inset-0 flex items-center justify-center">
-        <span
-          className={cn(
-            "text-dark-souls-brown/40 font-dark-souls text-8xl drop-shadow-md"
-          )}
-        >
-          {id}
-        </span>
-      </div>
+      {children}
     </div>
   );
 }
@@ -244,9 +280,11 @@ export default function EncounterCard() {
         className="absolute flex flex-col items-center justify-center"
         style={{ width: 493, height: 710, top: 663, left: 30 }}
       >
-        <Tile id={1} />
-        <Tile id={2} />
-        <Tile id={3} />
+        <Tile id={1} exit="top" entrance="bottom">
+          <Tile id={2} exit="left">
+            <Tile id={3} exit="top" />
+          </Tile>
+        </Tile>
       </div>
     </div>
   );
