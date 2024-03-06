@@ -66,6 +66,11 @@ export default function EncounterCard() {
       style={{ width: 807, height: 1397 }}
     >
       <img src="/images/encounter-card.jpg" />
+      <img
+        className="absolute"
+        src="/images/difficulty-1.png"
+        style={{ width: 128, height: 128, top: 29, right: 19 }}
+      />
       {/* Title */}
       <span
         className="absolute text-white text-6xl flex text-center items-center justify-center font-dark-souls"
