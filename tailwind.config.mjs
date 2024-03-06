@@ -10,6 +10,7 @@ export default {
           brown: "#251D1B",
           offwhite: "#EADDCC",
           gold: "#BB9834",
+          yellow: "#FFD572",
         },
       },
     },

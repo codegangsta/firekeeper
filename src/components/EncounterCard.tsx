@@ -1,6 +1,39 @@
 import type { PropsWithChildren } from "react";
 import { cn } from "../utils/styles";
 
+interface TileNodeProps {
+  id: number;
+  entrance?: "left" | "right" | "top" | "bottom";
+}
+
+function TileNode(props: TileNodeProps) {
+  const { id, entrance } = props;
+
+  if (
+    (entrance == "left" && [1, 6, 11].includes(id)) ||
+    (entrance == "right" && [3, 8, 13].includes(id)) ||
+    (entrance == "top" && [1, 2, 3].includes(id)) ||
+    (entrance == "bottom" && [11, 12, 13].includes(id))
+  ) {
+    return (
+      <img
+        src="/images/starting-marker.png"
+        className="-m-[1px]"
+        style={{ height: 18, width: 18 }}
+      />
+    );
+  }
+
+  return (
+    <div
+      className={cn(
+        "w-4 h-4 border-[3.5px] border-dark-souls-gold/80 rounded-full",
+        id === 7 ? "opacity-0" : ""
+      )}
+    ></div>
+  );
+}
+
 interface TileItemsProps {
   id: number;
   top: number;
@@ -158,27 +191,27 @@ function Tile(props: PropsWithChildren<TileProps>) {
 
         <div className="absolute inset-0 flex flex-col p-6 gap-6">
           <div className="flex flex-row justify-between">
-            <div className="w-4 h-4 border-[3.5px] border-dark-souls-gold/80 rounded-full"></div>
-            <div className="w-4 h-4 border-[3.5px] border-dark-souls-gold/80 rounded-full"></div>
-            <div className="w-4 h-4 border-[3.5px] border-dark-souls-gold/80 rounded-full"></div>
+            <TileNode id={1} entrance={entrance} />
+            <TileNode id={2} entrance={entrance} />
+            <TileNode id={3} entrance={entrance} />
           </div>
           <div className="flex flex-row justify-around">
-            <div className="w-4 h-4 border-[3.5px] border-dark-souls-gold/80 rounded-full"></div>
-            <div className="w-4 h-4 border-[3.5px] border-dark-souls-gold/80 rounded-full"></div>
+            <TileNode id={4} entrance={entrance} />
+            <TileNode id={5} entrance={entrance} />
           </div>
           <div className="flex flex-row justify-between">
-            <div className="w-4 h-4 border-[3.5px] border-dark-souls-gold/80 rounded-full"></div>
-            <div className="w-4 h-4 border-[3.5px] border-dark-souls-gold/0 rounded-full"></div>
-            <div className="w-4 h-4 border-[3.5px] border-dark-souls-gold/80 rounded-full"></div>
+            <TileNode id={6} entrance={entrance} />
+            <TileNode id={7} entrance={entrance} />
+            <TileNode id={8} entrance={entrance} />
           </div>
           <div className="flex flex-row justify-around">
-            <div className="w-4 h-4 border-[3.5px] border-dark-souls-gold/80 rounded-full"></div>
-            <div className="w-4 h-4 border-[3.5px] border-dark-souls-gold/80 rounded-full"></div>
+            <TileNode id={9} entrance={entrance} />
+            <TileNode id={10} entrance={entrance} />
           </div>
           <div className="flex flex-row justify-between">
-            <div className="w-4 h-4 border-[3.5px] border-dark-souls-gold/80 rounded-full"></div>
-            <div className="w-4 h-4 border-[3.5px] border-dark-souls-gold/80 rounded-full"></div>
-            <div className="w-4 h-4 border-[3.5px] border-dark-souls-gold/80 rounded-full"></div>
+            <TileNode id={11} entrance={entrance} />
+            <TileNode id={12} entrance={entrance} />
+            <TileNode id={13} entrance={entrance} />
           </div>
         </div>
         <div className="absolute inset-0 flex items-center justify-center">
