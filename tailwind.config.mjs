@@ -7,6 +7,9 @@ export default {
         "dark-souls": {
           pale: "#CECFD1",
           orange: "#FF7C3D",
+          brown: "#251D1B",
+          offwhite: "#EADDCC",
+          gold: "#BB9834",
         },
       },
     },

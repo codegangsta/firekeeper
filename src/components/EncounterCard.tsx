@@ -95,6 +95,58 @@ function TileItems(props: TileItemsProps) {
   );
 }
 
+interface TileProps {
+  id: number;
+}
+
+function Tile(props: TileProps) {
+  const { id } = props;
+  return (
+    <div
+      className="border-2 border-dark-souls-brown/50 relative"
+      style={{ width: 224, height: 224 }}
+    >
+      <div className="w-6 h-6 p-1 bg-dark-souls-offwhite absolute -top-[13px] -left-[13px]">
+        <img src="/images/cap.png" />
+      </div>
+      <div className="w-6 h-6 p-1 bg-dark-souls-offwhite absolute -bottom-[13px] -left-[13px]">
+        <img src="/images/cap.png" />
+      </div>
+      <div className="w-6 h-6 p-1 bg-dark-souls-offwhite absolute -top-[13px] -right-[13px]">
+        <img src="/images/cap.png" />
+      </div>
+      <div className="w-6 h-6 p-1 bg-dark-souls-offwhite absolute -bottom-[13px] -right-[13px]">
+        <img src="/images/cap.png" />
+      </div>
+      <div className="absolute inset-0 flex flex-col p-6 gap-6">
+        <div className="flex flex-row justify-between">
+          <div className="w-4 h-4 border-[3.5px] border-dark-souls-gold/80 rounded-full"></div>
+          <div className="w-4 h-4 border-[3.5px] border-dark-souls-gold/80 rounded-full"></div>
+          <div className="w-4 h-4 border-[3.5px] border-dark-souls-gold/80 rounded-full"></div>
+        </div>
+        <div className="flex flex-row justify-around">
+          <div className="w-4 h-4 border-[3.5px] border-dark-souls-gold/80 rounded-full"></div>
+          <div className="w-4 h-4 border-[3.5px] border-dark-souls-gold/80 rounded-full"></div>
+        </div>
+        <div className="flex flex-row justify-between">
+          <div className="w-4 h-4 border-[3.5px] border-dark-souls-gold/80 rounded-full"></div>
+          <div className="w-4 h-4 border-[3.5px] border-dark-souls-gold/0 rounded-full"></div>
+          <div className="w-4 h-4 border-[3.5px] border-dark-souls-gold/80 rounded-full"></div>
+        </div>
+        <div className="flex flex-row justify-around">
+          <div className="w-4 h-4 border-[3.5px] border-dark-souls-gold/80 rounded-full"></div>
+          <div className="w-4 h-4 border-[3.5px] border-dark-souls-gold/80 rounded-full"></div>
+        </div>
+        <div className="flex flex-row justify-between">
+          <div className="w-4 h-4 border-[3.5px] border-dark-souls-gold/80 rounded-full"></div>
+          <div className="w-4 h-4 border-[3.5px] border-dark-souls-gold/80 rounded-full"></div>
+          <div className="w-4 h-4 border-[3.5px] border-dark-souls-gold/80 rounded-full"></div>
+        </div>
+      </div>
+    </div>
+  );
+}
+
 export default function EncounterCard() {
   return (
     <div
@@ -171,9 +223,16 @@ export default function EncounterCard() {
           </span>
         </div>
       </div>
+      {/* Tiles Items */}
       <TileItems id={1} top={640} left={540} />)
       <TileItems id={2} top={890} left={540} trap />)
-      <TileItems id={3} top={1140} left={540} />)
+      <TileItems id={3} top={1140} left={540} />){/* Tiles */}
+      <div
+        className="absolute flex items-center justify-center"
+        style={{ width: 493, height: 710, top: 663, left: 30 }}
+      >
+        <Tile id={1} />
+      </div>
     </div>
   );
 }
