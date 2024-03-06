@@ -39,6 +39,10 @@ interface TileItemsProps {
   top: number;
   left: number;
   trap?: boolean;
+  node1: string[];
+  node2?: string[];
+  node3?: string;
+  node4?: string;
 }
 
 function TileItems(props: TileItemsProps) {
@@ -124,6 +128,42 @@ function TileItems(props: TileItemsProps) {
         >
           {id}
         </span>
+      </div>
+      <div className="absolute inset-0 gap-[11px] flex flex-col mt-[15px] ml-[64px]">
+        <div className="flex flex-row gap-3">
+          {(props.node1 ?? []).map((node, index) => (
+            <div key={index} className="w-[48px] h-[48px] rounded-full p-1">
+              <img src={node} className="object-scale-down w-full h-full" />
+            </div>
+          ))}
+        </div>
+        <div className="flex flex-row gap-3">
+          {(props.node2 ?? []).map((node, index) => (
+            <div key={index} className="w-[48px] h-[48px] rounded-full p-1">
+              <img src={node} className="object-scale-down w-full h-full" />
+            </div>
+          ))}
+        </div>
+        <div className="flex flex-row gap-3">
+          {props.node3 && (
+            <div className="w-[48px] h-[48px] rounded-full p-1">
+              <img
+                src={props.node3}
+                className="object-scale-down w-full h-full"
+              />
+            </div>
+          )}
+        </div>
+        <div className="flex flex-row gap-3">
+          {props.node4 && (
+            <div className="w-[48px] h-[48px] rounded-full p-1">
+              <img
+                src={props.node4}
+                className="object-scale-down w-full h-full"
+              />
+            </div>
+          )}
+        </div>
       </div>
     </div>
   );
@@ -238,7 +278,7 @@ export default function EncounterCard() {
       <img src="/images/encounter-card.jpg" />
       <img
         className="absolute"
-        src="/images/difficulty-1.png"
+        src="/images/difficulty-3.png"
         style={{ width: 128, height: 128, top: 29, right: 19 }}
       />
       <div
@@ -306,9 +346,34 @@ export default function EncounterCard() {
         </div>
       </div>
       {/* Tiles Items */}
-      <TileItems id={1} top={640} left={540} />)
-      <TileItems id={2} top={890} left={540} trap />)
-      <TileItems id={3} top={1140} left={540} />){/* Tiles */}
+      <TileItems
+        id={1}
+        top={640}
+        left={540}
+        node1={["/icons/giant-skeleton-archer.png"]}
+        node2={["/icons/skeleton-soldier.png"]}
+        node3="/icons/tombstone.png"
+      />
+      <TileItems
+        id={2}
+        top={890}
+        left={540}
+        trap
+        node1={["/icons/giant-skeleton-soldier.png"]}
+        node2={["/icons/necromancer.png"]}
+        node3="/icons/lever.png"
+        node4="/icons/barrel.png"
+      />
+      )
+      <TileItems
+        id={3}
+        top={1140}
+        left={540}
+        node1={["/icons/giant-skeleton-archer.png"]}
+        node2={["/icons/skeleton-archer.png"]}
+        node3="/icons/treasure-chest.png"
+        node4="/icons/treasure-chest.png"
+      />
       <div
         className="absolute flex flex-col items-center justify-center"
         style={{ width: 493, height: 710, top: 663, left: 30 }}
