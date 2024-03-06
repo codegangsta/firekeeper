@@ -4,21 +4,57 @@ interface TileItemsProps {
   id: number;
   top: number;
   left: number;
+  trap?: boolean;
 }
 
 function TileItems(props: TileItemsProps) {
-  const { id, top, left } = props;
+  const { id, top, left, trap = false } = props;
+
+  const bottom = trap ? -20 : 5;
   return (
     <div
       className="absolute"
       style={{ width: 256, height: 242, top: top, left: left }}
     >
       <img src="/images/tile-items.png" />
+      {trap && (
+        <>
+          <img
+            className="absolute"
+            style={{ width: 82, height: 120, bottom: -5, right: 37 }}
+            src="/images/trap.png"
+          />
+          <div
+            className="absolute flex items-center justify-center"
+            style={{ width: 100, height: 100, bottom: bottom, right: 30 }}
+          >
+            <span
+              className={cn(
+                "text-gray-900 font-semibold font-dark-souls text-6xl scale-125 blur saturate-150"
+              )}
+            >
+              {id}
+            </span>
+          </div>
+          <div
+            className="absolute flex items-center justify-center"
+            style={{ width: 100, height: 100, bottom: bottom, right: 30 }}
+          >
+            <span
+              className={cn(
+                "text-gray-900 font-semibold font-dark-souls text-6xl scale-100 blur-sm saturate-150"
+              )}
+            >
+              {id}
+            </span>
+          </div>
+        </>
+      )}
       {id === 1 && (
         <>
           <div
             className="absolute flex items-center justify-center"
-            style={{ width: 100, height: 100, bottom: 5, right: 30 }}
+            style={{ width: 100, height: 100, bottom: bottom, right: 30 }}
           >
             <span
               className={cn(
@@ -30,7 +66,7 @@ function TileItems(props: TileItemsProps) {
           </div>
           <div
             className="absolute flex items-center justify-center"
-            style={{ width: 100, height: 100, bottom: 5, right: 30 }}
+            style={{ width: 100, height: 100, bottom: bottom, right: 30 }}
           >
             <span
               className={cn(
@@ -44,7 +80,7 @@ function TileItems(props: TileItemsProps) {
       )}
       <div
         className="absolute flex items-center justify-center"
-        style={{ width: 100, height: 100, bottom: 5, right: 30 }}
+        style={{ width: 100, height: 100, bottom: bottom, right: 30 }}
       >
         <span
           className={cn(
@@ -71,6 +107,10 @@ export default function EncounterCard() {
         src="/images/difficulty-1.png"
         style={{ width: 128, height: 128, top: 29, right: 19 }}
       />
+      <div
+        className="absolute rounded-full bg-black"
+        style={{ width: 111, height: 111, top: 39, left: 28 }}
+      ></div>
       {/* Title */}
       <span
         className="absolute text-white text-6xl flex text-center items-center justify-center font-dark-souls"
@@ -131,8 +171,8 @@ export default function EncounterCard() {
           </span>
         </div>
       </div>
-      <TileItems id={1} top={650} left={540} />)
-      <TileItems id={2} top={895} left={540} />)
+      <TileItems id={1} top={640} left={540} />)
+      <TileItems id={2} top={890} left={540} trap />)
       <TileItems id={3} top={1140} left={540} />)
     </div>
   );
