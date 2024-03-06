@@ -102,20 +102,24 @@ interface TileProps {
 function Tile(props: TileProps) {
   const { id } = props;
   return (
-    <div
-      className="border-2 border-dark-souls-brown/50 relative"
-      style={{ width: 224, height: 224 }}
-    >
-      <div className="w-6 h-6 p-1 bg-dark-souls-offwhite absolute -top-[13px] -left-[13px]">
+    <div className="relative" style={{ width: 224, height: 224 }}>
+      {/*Borders*/}
+      <div className="absolute inset-x-3 top-0 h-0.5 bg-dark-souls-brown"></div>
+      <div className="absolute inset-x-3 bottom-0 h-0.5 bg-dark-souls-brown"></div>
+      <div className="absolute inset-y-3 left-0 w-0.5 bg-dark-souls-brown"></div>
+      <div className="absolute inset-y-3 right-0 w-0.5 bg-dark-souls-brown"></div>
+
+      {/*Caps*/}
+      <div className="w-6 h-6 p-1 absolute -top-[13px] -left-[11px]">
         <img src="/images/cap.png" />
       </div>
-      <div className="w-6 h-6 p-1 bg-dark-souls-offwhite absolute -bottom-[13px] -left-[13px]">
+      <div className="w-6 h-6 p-1 absolute -bottom-[13px] -left-[11px]">
         <img src="/images/cap.png" />
       </div>
-      <div className="w-6 h-6 p-1 bg-dark-souls-offwhite absolute -top-[13px] -right-[13px]">
+      <div className="w-6 h-6 p-1 absolute -top-[13px] -right-[11px]">
         <img src="/images/cap.png" />
       </div>
-      <div className="w-6 h-6 p-1 bg-dark-souls-offwhite absolute -bottom-[13px] -right-[13px]">
+      <div className="w-6 h-6 p-1 absolute -bottom-[13px] -right-[11px]">
         <img src="/images/cap.png" />
       </div>
       <div className="absolute inset-0 flex flex-col p-6 gap-6">
@@ -142,6 +146,15 @@ function Tile(props: TileProps) {
           <div className="w-4 h-4 border-[3.5px] border-dark-souls-gold/80 rounded-full"></div>
           <div className="w-4 h-4 border-[3.5px] border-dark-souls-gold/80 rounded-full"></div>
         </div>
+      </div>
+      <div className="absolute inset-0 flex items-center justify-center">
+        <span
+          className={cn(
+            "text-dark-souls-brown/40 font-dark-souls text-8xl drop-shadow-md"
+          )}
+        >
+          {id}
+        </span>
       </div>
     </div>
   );
@@ -228,10 +241,12 @@ export default function EncounterCard() {
       <TileItems id={2} top={890} left={540} trap />)
       <TileItems id={3} top={1140} left={540} />){/* Tiles */}
       <div
-        className="absolute flex items-center justify-center"
+        className="absolute flex flex-col items-center justify-center"
         style={{ width: 493, height: 710, top: 663, left: 30 }}
       >
         <Tile id={1} />
+        <Tile id={2} />
+        <Tile id={3} />
       </div>
     </div>
   );
