@@ -68,12 +68,20 @@ export default function EncounterCard() {
       {/* Special Rules */}
       <div
         className="absolute text-black/70 font-semibold text-2xl flex flex-col leading-7 inset-x-0"
-        style={{ top: 370, height: 250, left: 285, width: 220 }}
+        style={{ top: 370, height: 250, left: 285, width: 475 }}
       >
         <span className="font-dark-souls tracking-wider text-[26px] leading-8">
           Special Rules:
         </span>
-        <span className="text-black">Open all chests.</span>
+        <div className="flex flex-col gap-3 leading-6">
+          <span className="text-black italic">
+            Trial: Kill the Skeleton Beast
+          </span>
+          <span className="font-medium">
+            If the lever is activated, spawn a Skeleton Beast on tile three, on
+            the closest enemy spawn node to the character.
+          </span>
+        </div>
       </div>
       <TileItems id={1} top={650} left={540} />)
       <TileItems id={2} top={895} left={540} />)
