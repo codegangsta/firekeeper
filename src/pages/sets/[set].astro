@@ -15,7 +15,7 @@ const { set } = Astro.props;
 const scale = 0.5;
 const sets = [set.data];
 
-const engine = createEngine();
+const engine = createEngine({ sets: sets });
 ---
 
 <Layout title={set.data.name}>

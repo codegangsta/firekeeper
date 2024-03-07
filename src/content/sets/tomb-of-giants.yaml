@@ -72,7 +72,7 @@ encounters:
         value: Fireball
       - kind: Shortcut
     specialRules:
-      - text: '{{ "darkness" | keyword }}'
+      - text: "{{ 'darkness' | keyword }}"
     tiles:
       - entrance: top
         node1: [skeleton-soldier, skeleton-soldier]
@@ -114,6 +114,29 @@ terrain:
 
 keywords:
   - id: survive
-    name: "Survive"
+    name: Survive
     description: The characters meet this objective if they can avoid being killed for a set number of turns, shown in brackets next to the keyword.
-    # TODO: Add the rest of the keywords
+
+  - id: exit
+    name: Exit
+    description: Exit nodes are not represented by tokens, and only appear on encounter cards, indicated by the doorway symbol. Exit nodes have an increased node limit of four. If an encounter’s objective is to reach the exit and all characters are on the exit node, the party completes the encounter.
+
+  - id: occupy
+    name: Occupy
+    description: In order to meet this objective, the characters have to end a set number of turns on a specific node.
+
+  - id: onslaught
+    name: Onslaught
+    description: Each tile begins the encounter as active
+
+  - id: darkness
+    name: Darkness
+    description: During this encounter, characters can only attack enemies on the same or an adjacent node.
+
+  - id: timer
+    name: Timer
+    description: If the timer marker reaches the value shown in brackets, resolve the effect listed.
+
+  - id: trial
+    name: Trial
+    description: Trials offer an extra objective providing additional rewards if completed. This is shown in brackets, either in writing, or as a number of turns in which the characters must complete the encounter’s main objective. Completing trial objectives is not mandatory to complete an encounter.

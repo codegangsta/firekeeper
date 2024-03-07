@@ -38,14 +38,6 @@ export default function EncounterCard({
     return terrain?.icon ?? unknownIcon;
   };
 
-  const findKeyword = (id: string) => {
-    const keyword = sets
-      .flatMap((set) => set.keywords)
-      .filter((k) => k !== undefined)
-      .find((k) => k.id === id);
-    return keyword;
-  };
-
   return (
     <div
       className="rounded-[16px] border border-zinc-800 overflow-clip sm:hover:scale-110 md:hover:scale-125 transition-transform hover:z-10 hover:shadow-2xl cursor-pointer"
@@ -137,11 +129,6 @@ export default function EncounterCard({
           <div className="flex flex-col gap-3 leading-6">
             {encounter.specialRules.map((rule, index) => (
               <>
-                {rule.keyword && (
-                  <span className="text-black italic">
-                    {findKeyword(rule.keyword)?.name}
-                  </span>
-                )}
                 {rule.text && (
                   <span
                     className="font-medium whitespace-pre-wrap"
