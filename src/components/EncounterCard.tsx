@@ -279,6 +279,8 @@ interface Props {
 }
 
 export default function EncounterCard({ scale = 1, encounter }: Props) {
+  const difficultyImage = `/images/difficulty-${encounter.difficulty}.png`;
+
   return (
     <div
       className="rounded-xl border border-zinc-700 hover:border-zinc-500 overflow-clip sm:hover:scale-110 md:hover:scale-125 transition-all hover:z-10 hover:shadow-2xl cursor-pointer"
@@ -298,7 +300,7 @@ export default function EncounterCard({ scale = 1, encounter }: Props) {
         <img src="/images/encounter-card.jpg" />
         <img
           className="absolute"
-          src="/images/difficulty-3.png"
+          src={difficultyImage}
           style={{ width: 128, height: 128, top: 29, right: 19 }}
         />
         <div
