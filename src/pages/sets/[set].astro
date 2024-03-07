@@ -12,6 +12,7 @@ export async function getStaticPaths() {
 
 const { set } = Astro.props;
 const scale = 0.5;
+const sets = [set.data];
 ---
 
 <Layout title={set.data.name}>
@@ -24,7 +25,7 @@ const scale = 0.5;
     <div class="w-full grid grid-cols-1 sm:grid-cols-1 md:grid-cols-1 lg:grid-cols-2 xl:grid-cols-3 gap-8 justify-center border-t border-zinc-800 bg-zinc-900/50 p-9">
       {set.data.encounters.filter((encounter) => encounter.difficulty === '1').map((encounter) => (
       <div class="w-full flex items-center justify-center">
-        <EncounterCard encounter={encounter} scale={scale} />
+        <EncounterCard encounter={encounter} sets={sets} scale={scale} />
       </div>
       ))}
       <div class="w-full flex items-center justify-center">

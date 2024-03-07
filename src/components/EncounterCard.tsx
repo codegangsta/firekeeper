@@ -1,6 +1,6 @@
 import type { PropsWithChildren } from "react";
 import { cn } from "../utils/styles";
-import { Encounter } from "../content/schemas";
+import { Encounter, Set } from "../content/schemas";
 import { z } from "astro:content";
 
 interface TileNodeProps {
@@ -38,24 +38,19 @@ function TileNode(props: TileNodeProps) {
 
 interface TileItemsProps {
   id: number;
-  top: number;
-  left: number;
   trap?: boolean;
-  node1: string[];
+  node1?: string[];
   node2?: string[];
   node3?: string;
   node4?: string;
 }
 
 function TileItems(props: TileItemsProps) {
-  const { id, top, left, trap = false } = props;
+  const { id, trap = false } = props;
 
   const bottom = trap ? -20 : 5;
   return (
-    <div
-      className="absolute"
-      style={{ width: 256, height: 242, top: top, left: left }}
-    >
+    <div className="relative" style={{ width: 256, height: 242 }}>
       <img src="/images/tile-items.png" />
       {trap && (
         <>
@@ -132,21 +127,21 @@ function TileItems(props: TileItemsProps) {
         </span>
       </div>
       <div className="absolute inset-0 gap-[11px] flex flex-col mt-[15px] ml-[64px]">
-        <div className="flex flex-row gap-3">
+        <div className="flex flex-row gap-3 h-[48px]">
           {(props.node1 ?? []).map((node, index) => (
             <div key={index} className="w-[48px] h-[48px] rounded-full p-1">
               <img src={node} className="object-scale-down w-full h-full" />
             </div>
           ))}
         </div>
-        <div className="flex flex-row gap-3">
+        <div className="flex flex-row gap-3 h-[48px]">
           {(props.node2 ?? []).map((node, index) => (
             <div key={index} className="w-[48px] h-[48px] rounded-full p-1">
               <img src={node} className="object-scale-down w-full h-full" />
             </div>
           ))}
         </div>
-        <div className="flex flex-row gap-3">
+        <div className="flex flex-row gap-3 h-[48px]">
           {props.node3 && (
             <div className="w-[48px] h-[48px] rounded-full p-1">
               <img
@@ -156,7 +151,7 @@ function TileItems(props: TileItemsProps) {
             </div>
           )}
         </div>
-        <div className="flex flex-row gap-3">
+        <div className="flex flex-row gap-3 h-[48px]">
           {props.node4 && (
             <div className="w-[48px] h-[48px] rounded-full p-1">
               <img
@@ -284,15 +279,35 @@ function Tile(props: PropsWithChildren<TileProps>) {
 }
 
 type EncounterSchema = z.infer<typeof Encounter>;
+type SetSchema = z.infer<typeof Set>;
 
 interface Props {
   scale?: number;
   encounter: EncounterSchema;
+  sets: SetSchema[];
 }
 
-export default function EncounterCard({ scale = 1, encounter }: Props) {
+const unknownIcon = "/icons/unknown.png";
+
+export default function EncounterCard({ scale = 1, sets, encounter }: Props) {
   const difficultyImage = `/images/difficulty-${encounter.difficulty}.png`;
   const [tile1, tile2, tile3] = encounter.tiles;
+
+  const findEnemyIcon = (id: string) => {
+    const enemy = sets
+      .flatMap((set) => set.enemies)
+      .filter((enemy) => enemy !== undefined)
+      .find((enemy) => enemy.id === id);
+    return enemy?.icon ?? unknownIcon;
+  };
+
+  const findTerrainIcon = (id: string) => {
+    const terrain = sets
+      .flatMap((set) => set.terrain)
+      .filter((t) => t !== undefined)
+      .find((t) => t.id === id);
+    return terrain?.icon ?? unknownIcon;
+  };
 
   return (
     <div
@@ -354,7 +369,10 @@ export default function EncounterCard({ scale = 1, encounter }: Props) {
           </span>
           {encounter.rewards.map((reward, index) => (
             <>
-              <span className="text-black font-bold">{reward.kind}:</span>
+              <span className="text-black font-bold">
+                {reward.kind}
+                {reward.value && ":"}
+              </span>
               {reward.value && <span>{reward.value}</span>}
             </>
           ))}
@@ -379,34 +397,18 @@ export default function EncounterCard({ scale = 1, encounter }: Props) {
           </div>
         </div>
         {/* Tiles Items */}
-        <TileItems
-          id={1}
-          top={640}
-          left={540}
-          node1={["/icons/giant-skeleton-archer.png"]}
-          node2={["/icons/skeleton-soldier.png"]}
-          node3="/icons/tombstone.png"
-        />
-        <TileItems
-          id={2}
-          top={890}
-          left={540}
-          trap
-          node1={["/icons/giant-skeleton-soldier.png"]}
-          node2={["/icons/necromancer.png"]}
-          node3="/icons/lever.png"
-          node4="/icons/barrel.png"
-        />
-        )
-        <TileItems
-          id={3}
-          top={1140}
-          left={540}
-          node1={["/icons/giant-skeleton-archer.png"]}
-          node2={["/icons/skeleton-archer.png"]}
-          node3="/icons/treasure-chest.png"
-          node4="/icons/treasure-chest.png"
-        />
+        <div className="absolute top-[640px] left-[540px] flex flex-col gap-1">
+          {encounter.tiles.map((tile, index) => (
+            <TileItems
+              id={index + 1}
+              node1={tile.node1?.map(findEnemyIcon)}
+              node2={tile.node2?.map(findEnemyIcon)}
+              node3={tile.node3 ? findTerrainIcon(tile.node3 ?? "") : undefined}
+              node4={tile.node4 ? findTerrainIcon(tile.node4 ?? "") : undefined}
+              trap={tile.trap}
+            />
+          ))}
+        </div>
         <div
           className="absolute flex flex-col items-center justify-center"
           style={{ width: 493, height: 710, top: 663, left: 30 }}

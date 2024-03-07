@@ -15,6 +15,9 @@ encounters:
       - text: When the lever is activated, respawn all enemies.
     tiles:
       - entrance: top
+        node1: [skeleton-soldier]
+        node2: [skeleton-archer, skeleton-soldier]
+        node4: lever
 
 events: []
 
