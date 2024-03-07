@@ -1,5 +1,7 @@
 import type { PropsWithChildren } from "react";
 import { cn } from "../utils/styles";
+import { Encounter } from "../content/schemas";
+import { z } from "astro:content";
 
 interface TileNodeProps {
   id: number;
@@ -269,14 +271,17 @@ function Tile(props: PropsWithChildren<TileProps>) {
   );
 }
 
+type EncounterSchema = z.infer<typeof Encounter>;
+
 interface Props {
   scale?: number;
+  encounter: EncounterSchema;
 }
 
-export default function EncounterCard({ scale = 1 }: Props = {}) {
+export default function EncounterCard({ scale = 1, encounter }: Props) {
   return (
     <div
-      className="rounded-xl border border-zinc-700 overflow-clip hover:scale-110 transition-transform hover:z-10 hover:shadow-2xl cursor-pointer"
+      className="rounded-xl border border-zinc-700 hover:border-zinc-500 overflow-clip sm:hover:scale-110 hover:scale-125 transition-all hover:z-10 hover:shadow-2xl cursor-pointer"
       style={{
         width: 807 * scale,
         height: 1397 * scale,
@@ -305,15 +310,14 @@ export default function EncounterCard({ scale = 1 }: Props = {}) {
           className="absolute text-white text-6xl flex text-center items-center justify-center font-dark-souls"
           style={{ top: 35, left: 188, width: 430, height: 120 }}
         >
-          The Locked Grave
+          {encounter.name}
         </span>
         {/* Flavor */}
         <span
-          className="absolute text-black text-xl flex text-center items-center justify-center inset-x-0 mx-24 italic"
+          className="absolute text-black text-[21px] flex text-center items-center justify-center inset-x-0 mx-24 italic leading-6"
           style={{ top: 178, height: 58 }}
         >
-          The passage ahead ends in a stout door, sealed by an ancient lock, but
-          where there is a lock there must also be a key...
+          {encounter.flavor}
         </span>
         {/* Objective */}
         <div
@@ -323,7 +327,7 @@ export default function EncounterCard({ scale = 1 }: Props = {}) {
           <span className="font-dark-souls font-semibold tracking-wider  text-[26px] leading-8">
             Objective:
           </span>
-          <span className="text-black">Open all chests.</span>
+          <span>{encounter.objective}</span>
         </div>
         {/* Rewards */}
         <div
@@ -333,14 +337,12 @@ export default function EncounterCard({ scale = 1 }: Props = {}) {
           <span className="font-dark-souls font-semibold tracking-wider text-[26px] leading-8">
             Rewards:
           </span>
-          <span className="text-black font-bold">Souls:</span>
-          <span>2x Souls per enemy killed</span>
-          <span className="text-black font-bold">Draw:</span>
-          <span>1x Event</span>
-          <span className="text-black font-bold">Trial:</span>
-          <span>Dragon Scale</span>
-          <span className="text-black font-bold">Refresh:</span>
-          <span>Estus Flask</span>
+          {encounter.rewards.map((reward, index) => (
+            <>
+              <span className="text-black font-bold">{reward.kind}:</span>
+              {reward.value && <span>{reward.value}</span>}
+            </>
+          ))}
         </div>
         {/* Special Rules */}
         <div
@@ -351,13 +353,14 @@ export default function EncounterCard({ scale = 1 }: Props = {}) {
             Special Rules:
           </span>
           <div className="flex flex-col gap-3 leading-6">
-            <span className="text-black italic">
-              Trial: Kill the Skeleton Beast
-            </span>
-            <span className="font-medium">
-              If the lever is activated, spawn a Skeleton Beast on tile three,
-              on the closest enemy spawn node to the character.
-            </span>
+            {encounter.specialRules.map((rule, index) => (
+              <>
+                {rule.keyword && (
+                  <span className="text-black italic">{rule.keyword}</span>
+                )}
+                {rule.text && <span className="font-medium">{rule.text}</span>}
+              </>
+            ))}
           </div>
         </div>
         {/* Tiles Items */}

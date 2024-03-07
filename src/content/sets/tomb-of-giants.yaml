@@ -11,7 +11,8 @@ encounters:
       - kind: Souls
         value: 1x Soul per enemy killed
       - kind: Shortcut
-    specialRules: []
+    specialRules:
+      - text: When the lever is activated, respawn all enemies.
 
 events: []
 enemies: []
