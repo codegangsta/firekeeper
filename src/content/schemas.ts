@@ -4,16 +4,10 @@ export const Encounter = z.object({
   id: z.string(),
   name: z.string(),
   flavor: z.string(),
-  difficulty: z.enum([
-    "Level 1",
-    "Level 2",
-    "Level 3",
-    "Mini Boss",
-    "Main Boss",
-  ]),
+  difficulty: z.enum(["1", "2", "3", "mini-boss", "main-boss"]),
 
-  Objective: z.string(),
-  Rewards: z.array(
+  objective: z.string(),
+  rewards: z.array(
     z.object({
       kind: z.enum([
         "Souls",
@@ -25,10 +19,10 @@ export const Encounter = z.object({
         "Custom",
       ]),
       value: z.string().optional(),
-      playerIcon: z.boolean(),
+      playerIcon: z.boolean().default(false),
     })
   ),
-  SpecialRules: z.array(
+  specialRules: z.array(
     z.object({
       keyword: z.string().optional(),
       text: z.string().optional(),

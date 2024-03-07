@@ -3,7 +3,7 @@ import { Set } from "./schemas";
 
 export const collections = {
   sets: defineCollection({
-    type: "content",
+    type: "data",
     schema: Set,
   }),
 };

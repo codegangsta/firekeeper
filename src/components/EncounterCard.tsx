@@ -271,10 +271,7 @@ function Tile(props: PropsWithChildren<TileProps>) {
 
 export default function EncounterCard() {
   return (
-    <div
-      className="rounded-3xl overflow-clip relative"
-      style={{ width: 807, height: 1397 }}
-    >
+    <div className="w-[807px] h-[1397px] rounded-xl overflow-clip relative">
       <img src="/images/encounter-card.jpg" />
       <img
         className="absolute"

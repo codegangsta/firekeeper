@@ -13,6 +13,18 @@ export default {
           yellow: "#FFD572",
         },
       },
+      maxWidth: {
+        card: "807px",
+      },
+      maxHeight: {
+        card: "1397px",
+      },
+      transformOrigin: {
+        0: "0%",
+      },
+      scale: {
+        card: "calc(100% / 807px)",
+      },
     },
   },
   plugins: [],

@@ -1,0 +1,20 @@
+---
+import Layout from "../../layouts/Layout.astro"
+import { getCollection } from "astro:content";
+
+const sets = await getCollection("sets");
+---
+
+<Layout title="Sets">
+  <div class="container m-auto">
+    <div class="flex flex-col items-center justify-center p-20 w-full">
+    {sets.map((set) => (
+      <a href={`/sets/${set.id}`} class="flex flex-row border border-zinc-800 rounded-lg p-12 w-full lg:max-w-screen-md">
+        <div class="flex flex-col gap-4">
+          <span class="text-2xl font-dark-souls">{set.data.name}</span>
+        </div>
+      </a>
+    ))}
+    </div>
+  </div>
+</Layout>

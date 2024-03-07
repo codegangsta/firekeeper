@@ -1,0 +1,18 @@
+id: tomb-of-giants
+name: Tomb of Giants
+icon: "?"
+encounters:
+  - id: bridge-too-far
+    name: Bridge Too Far
+    flavor: A series of bridges rotate unsteadily in the gloom. Secure a safe passage by using the leavers to steader the path ahead.
+    difficulty: "1"
+    objective: Activate the lever three times.
+    rewards:
+      - kind: Souls
+        value: 1x Soul per enemy killed
+      - kind: Shortcut
+    specialRules: []
+
+events: []
+enemies: []
+terrain: []
