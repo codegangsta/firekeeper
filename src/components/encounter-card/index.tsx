@@ -63,7 +63,7 @@ export default function EncounterCard({ scale = 1, sets, encounter }: Props) {
         ></div>
         {/* Title */}
         <span
-          className="absolute text-white whitespace-pre text-6xl flex text-center items-center justify-center font-dark-souls"
+          className="absolute text-white whitespace-pre-wrap text-6xl flex text-center items-center justify-center font-dark-souls"
           style={{ top: 35, left: 188, width: 430, height: 120 }}
         >
           {encounter.name}
