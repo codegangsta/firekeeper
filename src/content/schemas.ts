@@ -30,14 +30,13 @@ export const Encounter = z.object({
   ),
   tiles: z.array(
     z.object({
-      id: z.number(),
       entrance: z.enum(["top", "bottom", "left", "right"]).optional(),
-      exit: z.enum(["top", "bottom", "left", "right"]),
+      exit: z.enum(["top", "bottom", "left", "right"]).default("bottom"),
       trap: z.boolean().default(false),
-      node1: z.array(z.string()),
-      node2: z.array(z.string()),
-      node3: z.string(),
-      node4: z.string(),
+      node1: z.array(z.string()).optional(),
+      node2: z.array(z.string()).optional(),
+      node3: z.string().optional(),
+      node4: z.string().optional(),
     })
   ),
 });

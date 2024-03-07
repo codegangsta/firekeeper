@@ -13,7 +13,21 @@ encounters:
       - kind: Shortcut
     specialRules:
       - text: When the lever is activated, respawn all enemies.
+    tiles:
+      - entrance: top
 
 events: []
-enemies: []
-terrain: []
+
+enemies:
+  - id: skeleton-soldier
+    name: Skeleton Soldier
+    icon: /icons/skeleton-soldier.png
+
+  - id: skeleton-archer
+    name: Skeleton Archer
+    icon: /icons/skeleton-archer.png
+
+terrain:
+  - id: lever
+    name: Lever
+    icon: /icons/lever.png

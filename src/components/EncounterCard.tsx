@@ -174,11 +174,12 @@ function TileItems(props: TileItemsProps) {
 interface TileProps {
   id: number;
   entrance?: "left" | "right" | "top" | "bottom";
-  exit: "left" | "right" | "top" | "bottom";
+  exit?: "left" | "right" | "top" | "bottom";
+  size?: "md" | "lg";
 }
 
 function Tile(props: PropsWithChildren<TileProps>) {
-  const { id, entrance, exit, children } = props;
+  const { id, entrance, exit, size = "md", children } = props;
 
   return (
     <div
@@ -190,7 +191,12 @@ function Tile(props: PropsWithChildren<TileProps>) {
         exit === "bottom" ? "flex-col" : ""
       )}
     >
-      <div className={cn("relative h-[212px] w-[212px]")}>
+      <div
+        className={cn(
+          "relative h-[212px] w-[212px]",
+          size == "lg" ? "h-[424px] w-[424px]" : ""
+        )}
+      >
         {/*Borders*/}
         {(exit !== "top" || !children) && (
           <div className="absolute inset-x-3 top-0 h-0.5 bg-dark-souls-brown/50"></div>
@@ -231,7 +237,12 @@ function Tile(props: PropsWithChildren<TileProps>) {
           />
         )}
 
-        <div className="absolute inset-0 flex flex-col p-6 gap-6">
+        <div
+          className={cn(
+            "absolute w-[212px] h-[212px] flex flex-col p-6 gap-5",
+            size == "lg" ? "scale-[200%] origin-top-left" : ""
+          )}
+        >
           <div className="flex flex-row justify-between">
             <TileNode id={1} entrance={entrance} />
             <TileNode id={2} entrance={entrance} />
@@ -256,6 +267,7 @@ function Tile(props: PropsWithChildren<TileProps>) {
             <TileNode id={13} entrance={entrance} />
           </div>
         </div>
+
         <div className="absolute inset-0 flex items-center justify-center">
           <span
             className={cn(
@@ -280,6 +292,7 @@ interface Props {
 
 export default function EncounterCard({ scale = 1, encounter }: Props) {
   const difficultyImage = `/images/difficulty-${encounter.difficulty}.png`;
+  const [tile1, tile2, tile3] = encounter.tiles;
 
   return (
     <div
@@ -398,11 +411,22 @@ export default function EncounterCard({ scale = 1, encounter }: Props) {
           className="absolute flex flex-col items-center justify-center"
           style={{ width: 493, height: 710, top: 663, left: 30 }}
         >
-          <Tile id={1} exit="top" entrance="bottom">
-            <Tile id={2} exit="left">
-              <Tile id={3} exit="top" />
+          {tile1 && (
+            <Tile
+              id={1}
+              exit={tile1.exit}
+              entrance={tile1.entrance}
+              size={tile2 ? "md" : "lg"}
+            >
+              {tile2 && (
+                <Tile id={2} exit={tile2.exit} entrance={tile2.entrance}>
+                  {tile3 && (
+                    <Tile id={3} exit={tile3.exit} entrance={tile3.entrance} />
+                  )}
+                </Tile>
+              )}
             </Tile>
-          </Tile>
+          )}
         </div>
       </div>
     </div>
