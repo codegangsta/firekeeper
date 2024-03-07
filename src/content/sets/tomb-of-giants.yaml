@@ -104,6 +104,22 @@ encounters:
         node2: [skeleton-soldier, skeleton-archer]
         node4: gravestone
 
+  - id: abandoned-storeroom
+    name: Abandoned Storeroom
+    flavor: A simple and quiet chamber belies a nest of deadly traps.
+    difficulty: "1"
+    objective: Break all barrels.
+    rewards:
+      - kind: Refresh
+        value: Luck
+    specialRules:
+      - text: "During set up, place a barrel token on each node containing a trap token."
+      - text: "If a barrel is discarded on a node where a blank trap token was revealed, roll {{ 1 | blackDice }}, then add a number of souls equal to the number of pips to the soul cache."
+    tiles:
+      - entrance: top
+        node1: [giant-skeleton-soldier]
+        trap: true
+
 events: []
 
 enemies:

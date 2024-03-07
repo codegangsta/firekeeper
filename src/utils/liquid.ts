@@ -35,11 +35,19 @@ export function createEngine({ sets }: createEngineOptions) {
     }
     return `<span class="text-black italic underline decoration-dotted decoration-zinc-800 cursor-help" title="${keyword.description}">${keyword.name}</span>`;
   });
+  e.registerFilter("blackDice", (v) => {
+    return `<span class="-mt-1.5 relative"><img class="w-6 h-6 inline" src="/icons/die-black.png"><span class="absolute inset-0 top-0.5 text-center text-white text-[16px] font-bold">${v}</span></span>`;
+  });
+  e.registerFilter("blueDice", (v) => {
+    return `<span class="-mt-1.5 relative"><img class="w-6 h-6 inline" src="/icons/die-blue.png"><span class="absolute inset-0 top-0.5 text-center text-white text-[16px] font-bold">${v}</span></span>`;
+  });
+  e.registerFilter("orangeDice", (v) => {
+    return `<span class="-mt-1.5 relative"><img class="w-6 h-6 inline" src="/icons/die-orange.png"><span class="absolute inset-0 top-0.5 text-center text-white text-[16px] font-bold">${v}</span></span>`;
+  });
   return e;
 }
 
 export function liquify(engine: Liquid, text: string, template = {}) {
-  console.log("liquify", text);
   try {
     return engine.parseAndRenderSync(escapeHtml(text), template);
   } catch (e: any) {
