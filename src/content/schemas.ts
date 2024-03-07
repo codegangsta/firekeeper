@@ -55,6 +55,18 @@ export const Terrain = z.object({
   icon: z.string(),
 });
 
+// Keywords represent special rules and objective rules that belong
+// to a set. For instance, Tomb of giants introduces Survive, Exit,
+// Occupy, Onslaught, Darkness, Timer, Respawn and Trial.
+//
+// Ideally we can eventually generate hover tooltips for each keyword
+// to make it easier to grok new rules.
+export const Keyword = z.object({
+  id: z.string(),
+  name: z.string(),
+  description: z.string(),
+});
+
 export const Set = z.object({
   id: z.string(),
   name: z.string(),
@@ -64,4 +76,5 @@ export const Set = z.object({
   events: z.array(Event),
   enemies: z.array(Enemy),
   terrain: z.array(Terrain),
+  keywords: z.array(Keyword),
 });

@@ -91,3 +91,9 @@ terrain:
   - id: treasure-chest
     name: Treasure Chest
     icon: /icons/treasure-chest.png
+
+keywords:
+  - id: survive
+    name: "Survive"
+    description: The characters meet this objective if they can avoid being killed for a set number of turns, shown in brackets next to the keyword.
+    # TODO: Add the rest of the keywords
