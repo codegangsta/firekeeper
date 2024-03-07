@@ -1,6 +1,6 @@
 import { z } from "astro:content";
 
-export const Encounter = z.object({
+export const EncounterSchema = z.object({
   id: z.string(),
   name: z.string(),
   flavor: z.string(),
@@ -20,13 +20,13 @@ export const Encounter = z.object({
       ]),
       value: z.string().optional(),
       playerIcon: z.boolean().default(false),
-    })
+    }),
   ),
   specialRules: z.array(
     z.object({
       keyword: z.string().optional(),
       text: z.string().optional(),
-    })
+    }),
   ),
   tiles: z.array(
     z.object({
@@ -37,19 +37,19 @@ export const Encounter = z.object({
       node2: z.array(z.string()).optional(),
       node3: z.string().optional(),
       node4: z.string().optional(),
-    })
+    }),
   ),
 });
 
-export const Event = z.object({});
+export const EventSchema = z.object({});
 
-export const Enemy = z.object({
+export const EnemySchema = z.object({
   id: z.string(),
   name: z.string(),
   icon: z.string(),
 });
 
-export const Terrain = z.object({
+export const TerrainSchema = z.object({
   id: z.string(),
   name: z.string(),
   icon: z.string(),
@@ -61,20 +61,27 @@ export const Terrain = z.object({
 //
 // Ideally we can eventually generate hover tooltips for each keyword
 // to make it easier to grok new rules.
-export const Keyword = z.object({
+export const KeywordSchema = z.object({
   id: z.string(),
   name: z.string(),
   description: z.string(),
 });
 
-export const Set = z.object({
+export const SetSchema = z.object({
   id: z.string(),
   name: z.string(),
   icon: z.string(),
 
-  encounters: z.array(Encounter),
-  events: z.array(Event),
-  enemies: z.array(Enemy),
-  terrain: z.array(Terrain),
-  keywords: z.array(Keyword),
+  encounters: z.array(EncounterSchema),
+  events: z.array(EventSchema),
+  enemies: z.array(EnemySchema),
+  terrain: z.array(TerrainSchema),
+  keywords: z.array(KeywordSchema),
 });
+
+export type Encounter = z.infer<typeof EncounterSchema>;
+export type Event = z.infer<typeof EventSchema>;
+export type Enemy = z.infer<typeof EnemySchema>;
+export type Terrain = z.infer<typeof TerrainSchema>;
+export type Keyword = z.infer<typeof KeywordSchema>;
+export type Set = z.infer<typeof SetSchema>;

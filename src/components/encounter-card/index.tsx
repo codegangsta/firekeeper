@@ -1,21 +1,24 @@
-import { Encounter, Set } from "../../content/schemas";
-import { z } from "astro:content";
+import type { Encounter, Set } from "../../content/schemas";
 import { liquify } from "../../utils/liquid";
 import TileItems from "./tile-items";
 import Tile from "./tile";
-
-type EncounterSchema = z.infer<typeof Encounter>;
-type SetSchema = z.infer<typeof Set>;
+import type { Liquid } from "liquidjs";
 
 interface Props {
+  engine: Liquid;
   scale?: number;
-  encounter: EncounterSchema;
-  sets: SetSchema[];
+  encounter: Encounter;
+  sets: Set[];
 }
 
 const unknownIcon = "/icons/unknown.png";
 
-export default function EncounterCard({ scale = 1, sets, encounter }: Props) {
+export default function EncounterCard({
+  scale = 1,
+  sets,
+  encounter,
+  engine,
+}: Props) {
   const difficultyImage = `/images/difficulty-${encounter.difficulty}.png`;
   const [tile1, tile2, tile3] = encounter.tiles;
 
@@ -33,6 +36,14 @@ export default function EncounterCard({ scale = 1, sets, encounter }: Props) {
       .filter((t) => t !== undefined)
       .find((t) => t.id === id);
     return terrain?.icon ?? unknownIcon;
+  };
+
+  const findKeyword = (id: string) => {
+    const keyword = sets
+      .flatMap((set) => set.keywords)
+      .filter((k) => k !== undefined)
+      .find((k) => k.id === id);
+    return keyword;
   };
 
   return (
@@ -84,7 +95,9 @@ export default function EncounterCard({ scale = 1, sets, encounter }: Props) {
             Objective:
           </span>
           <span
-            dangerouslySetInnerHTML={{ __html: liquify(encounter.objective) }}
+            dangerouslySetInnerHTML={{
+              __html: liquify(engine, encounter.objective),
+            }}
           ></span>
         </div>
         {/* Rewards */}
@@ -104,7 +117,9 @@ export default function EncounterCard({ scale = 1, sets, encounter }: Props) {
               <div className="flex flex-row">
                 {reward.value && (
                   <span
-                    dangerouslySetInnerHTML={{ __html: liquify(reward.value) }}
+                    dangerouslySetInnerHTML={{
+                      __html: liquify(engine, reward.value),
+                    }}
                   ></span>
                 )}
               </div>
@@ -123,12 +138,16 @@ export default function EncounterCard({ scale = 1, sets, encounter }: Props) {
             {encounter.specialRules.map((rule, index) => (
               <>
                 {rule.keyword && (
-                  <span className="text-black italic">{rule.keyword}</span>
+                  <span className="text-black italic">
+                    {findKeyword(rule.keyword)?.name}
+                  </span>
                 )}
                 {rule.text && (
                   <span
                     className="font-medium whitespace-pre-wrap"
-                    dangerouslySetInnerHTML={{ __html: liquify(rule.text) }}
+                    dangerouslySetInnerHTML={{
+                      __html: liquify(engine, rule.text),
+                    }}
                   ></span>
                 )}
               </>

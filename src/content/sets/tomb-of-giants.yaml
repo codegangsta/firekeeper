@@ -72,7 +72,7 @@ encounters:
         value: Fireball
       - kind: Shortcut
     specialRules:
-      - text: "Increase the Necromancer's starting health\n by {{playerCount}}."
+      - text: '{{ "darkness" | keyword }}'
     tiles:
       - entrance: top
         node1: [skeleton-soldier, skeleton-soldier]

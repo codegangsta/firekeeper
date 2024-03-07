@@ -1,9 +1,9 @@
 import { defineCollection } from "astro:content";
-import { Set } from "./schemas";
+import { SetSchema } from "./schemas";
 
 export const collections = {
   sets: defineCollection({
     type: "data",
-    schema: Set,
+    schema: SetSchema,
   }),
 };

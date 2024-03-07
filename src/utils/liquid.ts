@@ -4,10 +4,6 @@ const defaults = {
   playerCount: `<img class="inline w-[26px] h-[26px] -mt-1.5" src="/icons/player-count.png">`,
 };
 
-const engine = new Liquid({
-  globals: defaults,
-});
-
 function escapeHtml(unsafe: string) {
   return unsafe
     .replace(/&/g, "&amp;")
@@ -17,6 +13,21 @@ function escapeHtml(unsafe: string) {
     .replace(/'/g, "&#039;");
 }
 
-export function liquify(text: string, template = {}) {
-  return engine.parseAndRenderSync(escapeHtml(text), template);
+export function createEngine(globals = {}) {
+  const e = new Liquid({
+    globals: {
+      ...defaults,
+      ...globals,
+    },
+  });
+  return e;
+}
+
+export function liquify(engine: Liquid, text: string, template = {}) {
+  try {
+    return engine.parseAndRenderSync(escapeHtml(text), template);
+  } catch (e: any) {
+    console.error(e);
+    return `<span class="text-red-500 font-bold">${e.toString()}</span>`;
+  }
 }
