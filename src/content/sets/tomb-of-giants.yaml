@@ -60,6 +60,26 @@ encounters:
         node3: treasure-chest
         trap: true
 
+  - id: dark-resurrection
+    name: Dark Resurrection
+    flavor: The failing light cannot penetrate these murky depths. Soon all visibility shall be lost, unless a fresh source of illumination is found.
+    difficulty: "1"
+    objective: Place the torch on the shrine node.
+    rewards:
+      - kind: Souls
+        value: "{{playerCount}}+1 Souls"
+      - kind: Search
+        value: Fireball
+      - kind: Shortcut
+    specialRules:
+      - text: "Increase the Necromancer's starting health\n by {{playerCount}}."
+    tiles:
+      - entrance: top
+        node1: [skeleton-soldier, skeleton-soldier]
+        node2: [necromancer]
+        node3: treasure-chest
+        trap: true
+
 events: []
 
 enemies:
