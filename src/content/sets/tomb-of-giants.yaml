@@ -86,6 +86,24 @@ encounters:
         node4: gravestone
         trap: true
 
+  - id: grave-matters
+    name: Grave Matters
+    flavor: The dead awaken as you traverse this unhallowed ground, slowly rising from their lonely graves.
+    difficulty: "1"
+    objective: Kill all enemies.
+    rewards:
+      - kind: Souls
+        value: "{{playerCount}}+2 Souls"
+      - kind: Search
+        value: Firebomb
+    specialRules:
+      - text: Enemies skip their first turn.
+    tiles:
+      - entrance: top
+        node1: [skeleton-soldier, skeleton-archer]
+        node2: [skeleton-soldier, skeleton-archer]
+        node4: gravestone
+
 events: []
 
 enemies:

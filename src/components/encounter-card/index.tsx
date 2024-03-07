@@ -66,7 +66,7 @@ export default function EncounterCard({
         ></div>
         {/* Title */}
         <span
-          className="absolute text-white whitespace-pre-wrap text-6xl flex text-center items-center justify-center font-dark-souls"
+          className="absolute text-dark-souls-pale whitespace-pre-wrap text-6xl flex text-center items-center justify-center font-dark-souls"
           style={{ top: 35, left: 188, width: 430, height: 120 }}
         >
           {encounter.name}
