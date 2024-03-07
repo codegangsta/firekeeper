@@ -28,6 +28,18 @@ export const Encounter = z.object({
       text: z.string().optional(),
     })
   ),
+  tiles: z.array(
+    z.object({
+      id: z.number(),
+      entrance: z.enum(["top", "bottom", "left", "right"]).optional(),
+      exit: z.enum(["top", "bottom", "left", "right"]),
+      trap: z.boolean().default(false),
+      node1: z.array(z.string()),
+      node2: z.array(z.string()),
+      node3: z.string(),
+      node4: z.string(),
+    })
+  ),
 });
 
 export const Event = z.object({});
