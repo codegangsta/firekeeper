@@ -74,10 +74,16 @@ encounters:
     specialRules:
       - text: "{{ 'darkness' | keyword }}"
     tiles:
-      - entrance: top
-        node1: [skeleton-soldier, skeleton-soldier]
+      - entrance: left
+        exit: right
+        node1: [skeleton-soldier]
         node2: [necromancer]
-        node3: treasure-chest
+        node3: torch
+        node4: barrel
+      - node1: [skeleton-soldier, skeleton-soldier]
+        node2: [necromancer]
+        node3: shrine
+        node4: gravestone
         trap: true
 
 events: []
@@ -111,6 +117,18 @@ terrain:
   - id: treasure-chest
     name: Treasure Chest
     icon: /icons/treasure-chest.png
+
+  - id: torch
+    name: Torch
+    icon: /icons/torch.png
+
+  - id: shrine
+    name: Shrine
+    icon: /icons/shrine.png
+
+  - id: gravestone
+    name: Gravestone
+    icon: /icons/gravestone.png
 
 keywords:
   - id: survive
