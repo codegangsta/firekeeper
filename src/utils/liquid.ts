@@ -1,10 +1,12 @@
 import { Liquid } from "liquidjs";
 
-const engine = new Liquid();
-
 const defaults = {
   playerCount: `<img class="inline w-[26px] h-[26px] -mt-1.5" src="/icons/player-count.png">`,
 };
+
+const engine = new Liquid({
+  globals: defaults,
+});
 
 function escapeHtml(unsafe: string) {
   return unsafe
@@ -16,8 +18,5 @@ function escapeHtml(unsafe: string) {
 }
 
 export function liquify(text: string, template = {}) {
-  return engine.parseAndRenderSync(escapeHtml(text), {
-    ...defaults,
-    ...template,
-  });
+  return engine.parseAndRenderSync(escapeHtml(text), template);
 }
