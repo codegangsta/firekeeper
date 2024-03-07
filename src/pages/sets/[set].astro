@@ -16,12 +16,12 @@ const scale = 0.5;
 
 <Layout title={set.data.name}>
   <div class="flex flex-col gap-12 mt-20">
-    <div class="container m-auto flex flex-col gap-4">
+    <div class="container m-auto flex flex-col gap-4 items-center justify-center">
       <span class="text-4xl font-dark-souls">{set.data.name}</span>
       <span class="text-2xl">Level 1 Encounters</span>
     </div>
 
-    <div class="w-full grid grid-cols-1 content-center sm:grid-cols-1 md:grid-cols-1 lg:grid-cols-2 xl:grid-cols-3 gap-8 justify-center border-t border-zinc-800 bg-zinc-900/50 p-9">
+    <div class="w-full grid grid-cols-1 sm:grid-cols-1 md:grid-cols-1 lg:grid-cols-2 xl:grid-cols-3 gap-8 justify-center border-t border-zinc-800 bg-zinc-900/50 p-9">
       {set.data.encounters.filter((encounter) => encounter.difficulty === '1').map((encounter) => (
       <div class="w-full flex items-center justify-center">
         <EncounterCard encounter={encounter} scale={scale} />
