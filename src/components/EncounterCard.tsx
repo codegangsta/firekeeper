@@ -276,7 +276,7 @@ interface Props {
 export default function EncounterCard({ scale = 1 }: Props = {}) {
   return (
     <div
-      className="rounded-xl border border-zinc-700 overflow-clip"
+      className="rounded-xl border border-zinc-700 overflow-clip hover:scale-110 transition-transform hover:z-10 hover:shadow-2xl cursor-pointer"
       style={{
         width: 807 * scale,
         height: 1397 * scale,
