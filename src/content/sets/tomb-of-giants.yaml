@@ -3,7 +3,7 @@ name: Tomb of Giants
 icon: "?"
 encounters:
   - id: bridge-too-far
-    name: Bridge Too Far
+    name: "Bridge\nToo Far"
     flavor: A series of bridges rotate unsteadily in the gloom. Secure a safe passage by using the leavers to steader the path ahead.
     difficulty: "1"
     objective: Activate the lever three times.
@@ -19,6 +19,47 @@ encounters:
         node2: [skeleton-archer, skeleton-soldier]
         node4: lever
 
+  - id: puppet-master
+    name: Puppet Master
+    flavor: Vile necromancy has resurrected a powerful foe, and you must sever the blackened tendrils controlling it.
+    difficulty: "1"
+    objective: Kill the Necromancer.
+    rewards:
+      - kind: Souls
+        value: "{{playerCount}}+1 Souls"
+      - kind: Search
+        value: Skull Lantern
+      - kind: Refresh
+        value: Heroic Action
+    specialRules:
+      - text: The Giant Skeleton Soldier cannot suffer damage.
+    tiles:
+      - entrance: top
+        node1: [giant-skeleton-soldier, necromancer]
+        node3: barrel
+        node4: barrel
+
+  - id: deathly-magic
+    name: Deathly Magic
+    flavor: The stench of decay assaults your senses as a necromancer steps out of the darkness, teeth hared in a vicious snarl.
+    difficulty: "1"
+    objective: Kill the Necromancer.
+    rewards:
+      - kind: Souls
+        value: "{{playerCount}}+1 Souls"
+      - kind: Draw
+        value: 1x Event
+      - kind: Refresh
+        value: Estus Flask
+    specialRules:
+      - text: "Increase the Necromancer's starting health\n by {{playerCount}}."
+    tiles:
+      - entrance: top
+        node1: [skeleton-soldier, skeleton-soldier]
+        node2: [necromancer]
+        node3: treasure-chest
+        trap: true
+
 events: []
 
 enemies:
@@ -30,7 +71,23 @@ enemies:
     name: Skeleton Archer
     icon: /icons/skeleton-archer.png
 
+  - id: giant-skeleton-soldier
+    name: Giant Skeleton Soldier
+    icon: /icons/giant-skeleton-soldier.png
+
+  - id: necromancer
+    name: Necromancer
+    icon: /icons/necromancer.png
+
 terrain:
   - id: lever
     name: Lever
     icon: /icons/lever.png
+
+  - id: barrel
+    name: Barrel
+    icon: /icons/barrel.png
+
+  - id: treasure-chest
+    name: Treasure Chest
+    icon: /icons/treasure-chest.png

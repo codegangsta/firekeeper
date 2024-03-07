@@ -2,6 +2,7 @@ import type { PropsWithChildren } from "react";
 import { cn } from "../utils/styles";
 import { Encounter, Set } from "../content/schemas";
 import { z } from "astro:content";
+import { liquify } from "../utils/liquid";
 
 interface TileNodeProps {
   id: number;
@@ -288,6 +289,9 @@ interface Props {
 }
 
 const unknownIcon = "/icons/unknown.png";
+const templateVars = {
+  playerCount: "/icons/player-count.png",
+};
 
 export default function EncounterCard({ scale = 1, sets, encounter }: Props) {
   const difficultyImage = `/images/difficulty-${encounter.difficulty}.png`;
@@ -311,7 +315,7 @@ export default function EncounterCard({ scale = 1, sets, encounter }: Props) {
 
   return (
     <div
-      className="rounded-xl border border-zinc-700 hover:border-zinc-500 overflow-clip sm:hover:scale-110 md:hover:scale-125 transition-all hover:z-10 hover:shadow-2xl cursor-pointer"
+      className="rounded-[16px] border border-zinc-800 overflow-clip sm:hover:scale-110 md:hover:scale-125 transition-transform hover:z-10 hover:shadow-2xl cursor-pointer"
       style={{
         width: 807 * scale,
         height: 1397 * scale,
@@ -337,7 +341,7 @@ export default function EncounterCard({ scale = 1, sets, encounter }: Props) {
         ></div>
         {/* Title */}
         <span
-          className="absolute text-white text-6xl flex text-center items-center justify-center font-dark-souls"
+          className="absolute text-white whitespace-pre text-6xl flex text-center items-center justify-center font-dark-souls"
           style={{ top: 35, left: 188, width: 430, height: 120 }}
         >
           {encounter.name}
@@ -357,7 +361,9 @@ export default function EncounterCard({ scale = 1, sets, encounter }: Props) {
           <span className="font-dark-souls font-semibold tracking-wider  text-[26px] leading-8">
             Objective:
           </span>
-          <span>{encounter.objective}</span>
+          <span
+            dangerouslySetInnerHTML={{ __html: liquify(encounter.objective) }}
+          ></span>
         </div>
         {/* Rewards */}
         <div
@@ -373,7 +379,13 @@ export default function EncounterCard({ scale = 1, sets, encounter }: Props) {
                 {reward.kind}
                 {reward.value && ":"}
               </span>
-              {reward.value && <span>{reward.value}</span>}
+              <div className="flex flex-row">
+                {reward.value && (
+                  <span
+                    dangerouslySetInnerHTML={{ __html: liquify(reward.value) }}
+                  ></span>
+                )}
+              </div>
             </>
           ))}
         </div>
@@ -391,7 +403,12 @@ export default function EncounterCard({ scale = 1, sets, encounter }: Props) {
                 {rule.keyword && (
                   <span className="text-black italic">{rule.keyword}</span>
                 )}
-                {rule.text && <span className="font-medium">{rule.text}</span>}
+                {rule.text && (
+                  <span
+                    className="font-medium whitespace-pre-wrap"
+                    dangerouslySetInnerHTML={{ __html: liquify(rule.text) }}
+                  ></span>
+                )}
               </>
             ))}
           </div>
