@@ -1,5 +1,5 @@
 ---
-import EncounterCard from "../../components/EncounterCard";
+import EncounterCard from "../../components/encounter-card";
 import Layout from "../../layouts/Layout.astro"
 import { getCollection } from "astro:content";
 export async function getStaticPaths() {
@@ -24,9 +24,9 @@ const sets = [set.data];
 
     <div class="w-full grid grid-cols-1 sm:grid-cols-1 md:grid-cols-1 lg:grid-cols-2 xl:grid-cols-3 gap-8 justify-center border-t border-zinc-800 bg-zinc-900/50 p-9">
       {set.data.encounters.filter((encounter) => encounter.difficulty === '1').map((encounter) => (
-      <div class="w-full flex items-center justify-center">
-        <EncounterCard encounter={encounter} sets={sets} scale={scale} />
-      </div>
+        <div class="w-full flex items-center justify-center">
+          <EncounterCard encounter={encounter} sets={sets} scale={scale} />
+        </div>
       ))}
       <div class="w-full flex items-center justify-center">
         <div class="border border-zinc-700 border-dotted rounded-xl flex items-center justify-center text-4xl font-dark-souls text-center text-white/50 transition-colors cursor-pointer hover:border-zinc-500 hover:text-white/90" style={{
