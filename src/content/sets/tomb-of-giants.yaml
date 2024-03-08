@@ -124,17 +124,23 @@ encounters:
     name: In Deep Water
     flavor: The fetid waters have risen to waist height, forcing you to wade, yet the stench is the least of your concerns, as skeletal limbs and rusted weapons break the surface.
     difficulty: "2"
-    objective: Break all barrels.
+    objective: "{{'survive' | keyword}} for {{playerCount}}+3 turns."
     rewards:
-      - kind: Refresh
-        value: Luck
+      - kind: Souls
+        value: 8 Souls
+      - kind: Search
+        value: Thorolund Talisman
+      - kind: Draw
+        value: 1x Event
     specialRules:
-      - text: "During set up, place a barrel token on each node containing a trap token."
-      - text: "If a barrel is discarded on a node where a blank trap token was revealed, roll {{ 1 | blackDice }}, then add a number of souls equal to the number of pips to the soul cache."
+      - text: "{{'timer' | keyword: 3}}  Spawn a Skeleton Archer on each enemy node."
+      - text: "Characters must spend 1 stamina if they make their normal movement during their turn. Running is unaffected."
     tiles:
       - entrance: top
-        node1: [giant-skeleton-soldier]
-        trap: true
+        node1: [giant-skeleton-archer, skeleton-soldier]
+        node2: [skeleton-soldier, skeleton-soldier]
+        node3: barrel
+        node4: gravestone
 
 events: []
 
@@ -150,6 +156,10 @@ enemies:
   - id: giant-skeleton-soldier
     name: Giant Skeleton Soldier
     icon: /icons/giant-skeleton-soldier.png
+
+  - id: giant-skeleton-archer
+    name: Giant Skeleton Archer
+    icon: /icons/giant-skeleton-archer.png
 
   - id: necromancer
     name: Necromancer

@@ -28,12 +28,13 @@ export function createEngine({ sets }: createEngineOptions) {
       ...globals,
     },
   });
-  e.registerFilter("keyword", (v) => {
-    const keyword = globals.keywords.find((k) => k.id === v);
+  e.registerFilter("keyword", (k, v) => {
+    const keyword = globals.keywords.find((kw) => kw.id === k);
+    const value = v ? ` (${v})` : "";
     if (!keyword) {
-      return `<span class="text-red-500 font-bold">Keyword not found: ${v}</span>`;
+      return `<span class="text-red-500 font-bold">Keyword not found: ${k}</span>`;
     }
-    return `<span class="text-black italic underline decoration-dotted decoration-zinc-800 cursor-help" title="${keyword.description}">${keyword.name}</span>`;
+    return `<span class="text-black italic underline decoration-dotted decoration-zinc-800 cursor-help" title="${keyword.description}">${keyword.name}${value}</span>`;
   });
   e.registerFilter("blackDice", (v) => {
     return `<span class="-mt-1.5 relative"><img class="w-6 h-6 inline" src="/icons/die-black.png"><span class="absolute inset-0 top-0.5 text-center text-white text-[16px] font-bold">${v}</span></span>`;
