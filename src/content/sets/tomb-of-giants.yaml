@@ -333,7 +333,7 @@ encounters:
         node4: barrel
         trap: true
       - node1: [giant-skeleton-archer]
-        node2: [skeleton-soldier, skeleton-soldier]
+        node2: [skeleton-archer, skeleton-archer]
         node3: treasure-chest
         node4: treasure-chest
 
