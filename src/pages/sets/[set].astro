@@ -24,37 +24,40 @@ const engine = createEngine({ sets: sets });
       class="container m-auto flex flex-col gap-4 items-center justify-center"
     >
       <span class="text-4xl font-dark-souls">{set.data.name}</span>
-      <span class="text-2xl">Level 1 Encounters</span>
     </div>
-
-    <div
-      class="w-full grid grid-cols-1 sm:grid-cols-1 md:grid-cols-1 lg:grid-cols-2 xl:grid-cols-3 gap-8 justify-center border-t border-zinc-800 bg-zinc-900/50 p-9"
-    >
-      {
-        set.data.encounters
-          .filter((encounter) => encounter.difficulty === "1")
-          .map((encounter) => (
+    {
+      [1, 2, 3].map((level) => (
+        <>
+          <div class="container m-auto flex flex-col gap-4 items-center justify-center">
+            <span class="text-2xl">Level {level} Encounters</span>
+          </div>
+          <div class="w-full grid grid-cols-1 sm:grid-cols-1 md:grid-cols-1 lg:grid-cols-2 xl:grid-cols-3 2xl:grid-cols-4 gap-8 justify-center border-t border-zinc-800 bg-zinc-900/50 p-9">
+            {set.data.encounters
+              .filter((encounter) => encounter.difficulty === level.toString())
+              .map((encounter) => (
+                <div class="w-full flex items-center justify-center">
+                  <EncounterCard
+                    engine={engine}
+                    encounter={encounter}
+                    sets={sets}
+                    scale={scale}
+                  />
+                </div>
+              ))}
             <div class="w-full flex items-center justify-center">
-              <EncounterCard
-                engine={engine}
-                encounter={encounter}
-                sets={sets}
-                scale={scale}
-              />
+              <div
+                class="border border-zinc-700 border-dotted rounded-xl flex items-center justify-center text-4xl font-dark-souls text-center text-white/50 transition-colors cursor-pointer hover:border-zinc-500 hover:text-white/90"
+                style={{
+                  width: `${807 * scale}px`,
+                  height: `${1397 * scale}px`,
+                }}
+              >
+                Add New Card
+              </div>
             </div>
-          ))
-      }
-      <div class="w-full flex items-center justify-center">
-        <div
-          class="border border-zinc-700 border-dotted rounded-xl flex items-center justify-center text-4xl font-dark-souls text-center text-white/50 transition-colors cursor-pointer hover:border-zinc-500 hover:text-white/90"
-          style={{
-            width: `${807 * scale}px`,
-            height: `${1397 * scale}px`,
-          }}
-        >
-          Add New Card
-        </div>
-      </div>
-    </div>
+          </div>
+        </>
+      ))
+    }
   </div>
 </Layout>

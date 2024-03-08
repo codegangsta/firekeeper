@@ -73,7 +73,7 @@ export default function EncounterCard({
         </span>
         {/* Flavor */}
         <span
-          className="absolute text-black text-[21px] flex text-center items-center justify-center inset-x-0 mx-24 italic leading-6"
+          className="absolute text-black text-[21px] flex text-center items-center justify-center inset-x-0 mx-12 italic leading-6"
           style={{ top: 178, height: 58 }}
         >
           {encounter.flavor}

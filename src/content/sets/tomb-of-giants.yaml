@@ -120,6 +120,22 @@ encounters:
         node1: [giant-skeleton-soldier]
         trap: true
 
+  - id: in-deep-water
+    name: In Deep Water
+    flavor: The fetid waters have risen to waist height, forcing you to wade, yet the stench is the least of your concerns, as skeletal limbs and rusted weapons break the surface.
+    difficulty: "2"
+    objective: Break all barrels.
+    rewards:
+      - kind: Refresh
+        value: Luck
+    specialRules:
+      - text: "During set up, place a barrel token on each node containing a trap token."
+      - text: "If a barrel is discarded on a node where a blank trap token was revealed, roll {{ 1 | blackDice }}, then add a number of souls equal to the number of pips to the soul cache."
+    tiles:
+      - entrance: top
+        node1: [giant-skeleton-soldier]
+        trap: true
+
 events: []
 
 enemies:
