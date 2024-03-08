@@ -262,7 +262,7 @@ encounters:
       - kind: Search
         value: Bonewheel Shield
       - kind: Draw
-        value: "1x Event"
+        value: 1x Event
     specialRules:
       - Enemies add +1 to their block and resist values for each barrel on their tile.
     tiles:
@@ -277,6 +277,31 @@ encounters:
         node2: [skeleton-soldier]
         node3: barrel
         node4: barrel
+
+  - id: the-mass-grave
+    name: The Mass Grave
+    flavor: "A moment of respite is snatched from you, as a gate ahead opens, and a tide of undead foes spills forth!"
+    difficulty: "2"
+    objective: Activate the lever. Kill all enemies.
+    rewards:
+      - kind: Souls
+        value: "{{playerCount}}+2 Souls per respawn"
+      - kind: Draw
+        value: 1x Event
+      - kind: Shortcut
+    specialRules:
+      - "{{'onslaught'|keyword}}"
+      - "{{'timer'|keyword:3}}  Respawn enemies on tile two.\n{{'timer'|keyword:6}}  Respawn enemies on tile two.\n{{'timer'|keyword:3}}  Respawn enemies on tile two."
+      - "Characters cannot be placed on tile two.\nRemove tile two when the lever is activated."
+      - "Enemies gain +1 movement during their turn."
+    tiles:
+      - entrance: bottom
+        exit: top
+        node1: [giant-skeleton-soldier]
+        node3: lever
+        node4: barrel
+      - node1: [skeleton-soldier, skeleton-soldier]
+        node2: [giant-skeleton-soldier]
 
 events: []
 
