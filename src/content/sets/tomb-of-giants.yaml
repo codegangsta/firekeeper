@@ -251,6 +251,33 @@ encounters:
         node4: treasure-chest
         trap: true
 
+  - id: urns-of-the-fallen
+    name: "Urns of\nthe Fallen"
+    flavor: "Rows of cursed urls line the chambers ahead, undead wardens\nbound to each as eternal guardians."
+    difficulty: "2"
+    objective: Kill all enemies.
+    rewards:
+      - kind: Souls
+        value: "{{playerCount}}+2 Souls"
+      - kind: Search
+        value: Bonewheel Shield
+      - kind: Draw
+        value: "1x Event"
+    specialRules:
+      - Enemies add +1 to their block and resist values for each barrel on their tile.
+    tiles:
+      - exit: top
+        node1: [skeleton-archer, skeleton-soldier]
+        node2: [skeleton-soldier]
+        node3: barrel
+        node4: barrel
+        trap: true
+      - entrance: top
+        node1: [skeleton-archer]
+        node2: [skeleton-soldier]
+        node3: barrel
+        node4: barrel
+
 events: []
 
 enemies:
