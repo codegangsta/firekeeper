@@ -17,15 +17,15 @@ export default function Tile(props: PropsWithChildren<TileProps>) {
       className={cn(
         "flex",
         exit === "left" ? "flex-row-reverse items-end" : "",
-        exit === "right" ? "flex-row" : "",
+        exit === "right" ? "flex-row items-end" : "",
         exit === "top" ? "flex-col-reverse items-end" : "",
-        exit === "bottom" ? "flex-col" : ""
+        exit === "bottom" ? "flex-col items-end" : "",
       )}
     >
       <div
         className={cn(
           "relative h-[212px] w-[212px]",
-          size == "lg" ? "h-[424px] w-[424px]" : ""
+          size == "lg" ? "h-[424px] w-[424px]" : "",
         )}
       >
         {/*Borders*/}
@@ -71,7 +71,7 @@ export default function Tile(props: PropsWithChildren<TileProps>) {
         <div
           className={cn(
             "absolute w-[212px] h-[212px] flex flex-col p-6 gap-5",
-            size == "lg" ? "scale-[200%] origin-top-left" : ""
+            size == "lg" ? "scale-[200%] origin-top-left" : "",
           )}
         >
           <div className="flex flex-row justify-between">
@@ -102,7 +102,7 @@ export default function Tile(props: PropsWithChildren<TileProps>) {
         <div className="absolute inset-0 flex items-center justify-center">
           <span
             className={cn(
-              "text-dark-souls-brown/40 font-dark-souls text-8xl drop-shadow-md"
+              "text-dark-souls-brown/40 font-dark-souls text-8xl drop-shadow-md",
             )}
           >
             {id}

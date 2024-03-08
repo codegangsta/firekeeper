@@ -191,6 +191,36 @@ encounters:
         node3: shrine
         node4: barrel
 
+  - id: maze-of-the-dead
+    name: "Maze of\nthe Dead"
+    flavor: "These burial chambers are narrow and close, foes lurching from hidden alcoves to attack, before disappearing from sight once more."
+    difficulty: "2"
+    objective: "Activate all levers."
+    rewards:
+      - kind: Souls
+        value: "{{playerCount}}+2 Souls"
+      - kind: Draw
+        value: "1x Event"
+      - kind: Shortcut
+    specialRules:
+      - Reduce the node model limit to two.
+      - Enemies gain +1 dodge difficulty.
+    tiles:
+      - entrance: top
+        exit: right
+        node1: [skeleton-soldier]
+        node2: [necromancer]
+        node3: gravestone
+        node4: lever
+      - exit: top
+        node2: [skeleton-beast]
+        node3: lever
+        node4: treasure-chest
+      - node1: [skeleton-archer]
+        node2: [skeleton-soldier, skeleton-soldier]
+        node3: treasure-chest
+        node4: lever
+
 events: []
 
 enemies:
@@ -209,6 +239,10 @@ enemies:
   - id: giant-skeleton-archer
     name: Giant Skeleton Archer
     icon: /icons/giant-skeleton-archer.png
+
+  - id: skeleton-beast
+    name: Skeleton Beast
+    icon: /icons/skeleton-beast.png
 
   - id: necromancer
     name: Necromancer
