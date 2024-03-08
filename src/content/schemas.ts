@@ -22,12 +22,7 @@ export const EncounterSchema = z.object({
       playerIcon: z.boolean().default(false),
     }),
   ),
-  specialRules: z.array(
-    z.object({
-      keyword: z.string().optional(),
-      text: z.string().optional(),
-    }),
-  ),
+  specialRules: z.array(z.string()),
   tiles: z.array(
     z.object({
       entrance: z.enum(["top", "bottom", "left", "right"]).optional(),

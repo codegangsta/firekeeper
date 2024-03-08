@@ -12,7 +12,7 @@ encounters:
         value: 1x Soul per enemy killed
       - kind: Shortcut
     specialRules:
-      - text: When the lever is activated, respawn all enemies.
+      - When the lever is activated, respawn all enemies.
     tiles:
       - entrance: top
         node1: [skeleton-soldier]
@@ -32,7 +32,7 @@ encounters:
       - kind: Refresh
         value: Heroic Action
     specialRules:
-      - text: The Giant Skeleton Soldier cannot suffer damage.
+      - The Giant Skeleton Soldier cannot suffer damage.
     tiles:
       - entrance: top
         node1: [giant-skeleton-soldier, necromancer]
@@ -52,7 +52,7 @@ encounters:
       - kind: Refresh
         value: Estus Flask
     specialRules:
-      - text: "Increase the Necromancer's starting health\n by {{playerCount}}."
+      - "Increase the Necromancer's starting health\n by {{playerCount}}."
     tiles:
       - entrance: top
         node1: [skeleton-soldier, skeleton-soldier]
@@ -72,7 +72,7 @@ encounters:
         value: Fireball
       - kind: Shortcut
     specialRules:
-      - text: "{{ 'darkness' | keyword }}"
+      - "{{ 'darkness' | keyword }}"
     tiles:
       - entrance: left
         exit: right
@@ -97,7 +97,7 @@ encounters:
       - kind: Search
         value: Firebomb
     specialRules:
-      - text: Enemies skip their first turn.
+      - Enemies skip their first turn.
     tiles:
       - entrance: top
         node1: [skeleton-soldier, skeleton-archer]
@@ -113,8 +113,8 @@ encounters:
       - kind: Refresh
         value: Luck
     specialRules:
-      - text: "During set up, place a barrel token on each node containing a trap token."
-      - text: "If a barrel is discarded on a node where a blank trap token was revealed, roll {{ 1 | blackDice }}, then add a number of souls equal to the number of pips to the soul cache."
+      - "During set up, place a barrel token on each node containing a trap token."
+      - "If a barrel is discarded on a node where a blank trap token was revealed, roll {{ 1 | blackDice }}, then add a number of souls equal to the number of pips to the soul cache."
     tiles:
       - entrance: top
         node1: [giant-skeleton-soldier]
@@ -133,8 +133,8 @@ encounters:
       - kind: Draw
         value: 1x Event
     specialRules:
-      - text: "{{'timer' | keyword: 3}}  Spawn a Skeleton Archer on each enemy node."
-      - text: "Characters must spend 1 stamina if they make their normal movement during their turn. Running is unaffected."
+      - "{{'timer' | keyword: 3}}  Spawn a Skeleton Archer on each enemy node."
+      - "Characters must spend 1 stamina if they make their normal movement during their turn. Running is unaffected."
     tiles:
       - entrance: top
         node1: [giant-skeleton-archer, skeleton-soldier]
@@ -153,8 +153,8 @@ encounters:
       - kind: Draw
         value: "1x Treasure\n1x Event"
     specialRules:
-      - text: "{{'darkness' | keyword}}"
-      - text: "If a character makes an attack and is not on the same or an adjacent node to the torch, subtract -1 from the attack's damage total."
+      - "{{'darkness' | keyword}}"
+      - "If a character makes an attack and is not on the same or an adjacent node to the torch, subtract -1 from the attack's damage total."
     tiles:
       - exit: "bottom"
         node1: [skeleton-soldier]
@@ -166,6 +166,30 @@ encounters:
         node3: treasure-chest
         node4: torch
         trap: true
+
+  - id: altar-of-bones
+    name: "Altar of Bones"
+    flavor: "Only by paying fealty to this grisly altar can you progress,\nlight from above illuminating your sacrifice in harsh relief."
+    difficulty: "2"
+    objective: "{{'occupy' | keyword}} the shrine for {{playerCount}}+2 turns."
+    rewards:
+      - kind: Souls
+        value: "{{playerCount}}+4 Souls"
+      - kind: Draw
+        value: "2x Treasure\n1x Event"
+    specialRules:
+      - "{{'timer'|keyword:2}}  Respawn all enemies."
+      - If a character ends their turn on the same node they began the turn on, they suffer 1 damage.
+    tiles:
+      - entrance: top
+        exit: right
+        node1: [skeleton-soldier]
+        node2: [giant-skeleton-archer]
+        node3: barrel
+      - node1: [skeleton-soldier, skeleton-archer]
+        node2: [giant-skeleton-soldier]
+        node3: shrine
+        node4: barrel
 
 events: []
 

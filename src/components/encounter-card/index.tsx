@@ -129,16 +129,13 @@ export default function EncounterCard({
           </span>
           <div className="flex flex-col gap-3 leading-6">
             {encounter.specialRules.map((rule, index) => (
-              <>
-                {rule.text && (
-                  <span
-                    className="font-medium whitespace-pre-wrap"
-                    dangerouslySetInnerHTML={{
-                      __html: liquify(engine, rule.text),
-                    }}
-                  ></span>
-                )}
-              </>
+              <span
+                key={index}
+                className="font-medium whitespace-pre-wrap"
+                dangerouslySetInnerHTML={{
+                  __html: liquify(engine, rule),
+                }}
+              ></span>
             ))}
           </div>
         </div>
