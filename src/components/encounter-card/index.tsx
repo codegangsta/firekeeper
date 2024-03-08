@@ -73,7 +73,7 @@ export default function EncounterCard({
         </span>
         {/* Flavor */}
         <span
-          className="absolute text-black text-[21px] flex text-center items-center justify-center inset-x-0 mx-12 italic leading-6"
+          className="absolute text-black text-[21px] whitespace-pre-wrap flex text-center items-center justify-center inset-x-0 mx-12 italic leading-6"
           style={{ top: 178, height: 58 }}
         >
           {encounter.flavor}
@@ -109,6 +109,7 @@ export default function EncounterCard({
               <div className="flex flex-row">
                 {reward.value && (
                   <span
+                    className="whitespace-pre-wrap"
                     dangerouslySetInnerHTML={{
                       __html: liquify(engine, reward.value),
                     }}
@@ -151,6 +152,7 @@ export default function EncounterCard({
               node3={tile.node3 ? findTerrainIcon(tile.node3 ?? "") : undefined}
               node4={tile.node4 ? findTerrainIcon(tile.node4 ?? "") : undefined}
               trap={tile.trap}
+              entrance={tile.entrance}
             />
           ))}
         </div>

@@ -7,10 +7,11 @@ interface TileItemsProps {
   node2?: string[];
   node3?: string;
   node4?: string;
+  entrance?: "left" | "right" | "top" | "bottom";
 }
 
 export default function TileItems(props: TileItemsProps) {
-  const { id, trap = false } = props;
+  const { id, entrance, trap = false } = props;
 
   const bottom = trap ? -20 : 5;
   return (
@@ -29,7 +30,7 @@ export default function TileItems(props: TileItemsProps) {
           >
             <span
               className={cn(
-                "text-gray-900 font-semibold font-dark-souls text-6xl scale-125 blur saturate-150"
+                "text-gray-900 font-semibold font-dark-souls text-6xl scale-125 blur saturate-150",
               )}
             >
               {id}
@@ -41,7 +42,7 @@ export default function TileItems(props: TileItemsProps) {
           >
             <span
               className={cn(
-                "text-gray-900 font-semibold font-dark-souls text-6xl scale-100 blur-sm saturate-150"
+                "text-gray-900 font-semibold font-dark-souls text-6xl scale-100 blur-sm saturate-150",
               )}
             >
               {id}
@@ -49,7 +50,7 @@ export default function TileItems(props: TileItemsProps) {
           </div>
         </>
       )}
-      {id === 1 && (
+      {entrance && (
         <>
           <div
             className="absolute flex items-center justify-center"
@@ -57,7 +58,7 @@ export default function TileItems(props: TileItemsProps) {
           >
             <span
               className={cn(
-                "text-dark-souls-orange font-semibold font-dark-souls text-6xl scale-125 blur saturate-150"
+                "text-dark-souls-orange font-semibold font-dark-souls text-6xl scale-125 blur saturate-150",
               )}
             >
               {id}
@@ -69,7 +70,7 @@ export default function TileItems(props: TileItemsProps) {
           >
             <span
               className={cn(
-                "text-dark-souls-orange font-semibold font-dark-souls text-6xl scale-100 blur-sm"
+                "text-dark-souls-orange font-semibold font-dark-souls text-6xl scale-100 blur-sm",
               )}
             >
               {id}
@@ -84,7 +85,7 @@ export default function TileItems(props: TileItemsProps) {
         <span
           className={cn(
             "text-dark-souls-pale font-dark-souls text-6xl",
-            id != 1 ? "drop-shadow-md" : ""
+            id != 1 ? "drop-shadow-md" : "",
           )}
         >
           {id}

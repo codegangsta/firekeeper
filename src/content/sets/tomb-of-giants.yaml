@@ -142,6 +142,31 @@ encounters:
         node3: barrel
         node4: gravestone
 
+  - id: far-from-the-sun
+    name: "Far From\nthe Sun"
+    flavor: "A small mercy is bestowed upon you in this miserable place,\na single flame beating back the sinister shroud of darkness."
+    difficulty: "2"
+    objective: Kill all enemies.
+    rewards:
+      - kind: Souls
+        value: 1x Soul per enemy killed
+      - kind: Draw
+        value: "1x Treasure\n1x Event"
+    specialRules:
+      - text: "{{'darkness' | keyword}}"
+      - text: "If a character makes an attack and is not on the same or an adjacent node to the torch, subtract -1 from the attack's damage total."
+    tiles:
+      - exit: "bottom"
+        node1: [skeleton-soldier]
+        node2: [giant-skeleton-soldier]
+        node3: barrel
+      - entrance: "bottom"
+        node1: [skeleton-soldier]
+        node2: [necromancer, skeleton-soldier]
+        node3: treasure-chest
+        node4: torch
+        trap: true
+
 events: []
 
 enemies:
