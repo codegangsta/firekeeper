@@ -337,6 +337,37 @@ encounters:
         node3: treasure-chest
         node4: treasure-chest
 
+  - id: the-skeleton-ball
+    name: The Skeleton Ball
+    flavor: "A bizarre sphere of reanimated bones rolls through these depths,\nsmashing asunder all in its path."
+    difficulty: "3"
+    objective: Defeat all Necromancers.
+    rewards:
+      - kind: Souls
+        value: "{{playerCount}}+8 Souls"
+      - kind: Search
+        value: Divine Blessing
+      - kind: Shortcut
+    specialRules:
+      - "Place the skeleton ball token on the [!], with the arrow facing towards [!]. At the end of each enemy turn, move the token three nodes in the direction of the arrow. If the token hits a wall, flip the token so that the arrow faces the opposite direction."
+      - "Models cannot move onto a node containing the skeleton ball. If the token moves onto a node containing one or more models, each model is pushed to an adjacent square and suffers 2 damage."
+    tiles:
+      - entrance: bottom
+        exit: top
+        node1: [giant-skeleton-archer]
+        node2: [skeleton-soldier]
+        node3: gravestone
+      - exit: left
+        node1: [giant-skeleton-soldier]
+        node2: [necromancer]
+        node3: lever
+        node4: barrel
+        trap: true
+      - node1: [giant-skeleton-archer]
+        node2: [skeleton-archer, skeleton-archer]
+        node3: treasure-chest
+        node4: treasure-chest
+
 events: []
 
 enemies:

@@ -121,8 +121,8 @@ export default function EncounterCard({
         </div>
         {/* Special Rules */}
         <div
-          className="absolute text-black/70 font-semibold text-2xl flex flex-col leading-7 inset-x-0"
-          style={{ top: 370, height: 250, left: 285, width: 475 }}
+          className="absolute text-black/70 font-semibold text-2xl flex flex-col leading-7 inset-x-0 border border-red-400"
+          style={{ top: 370, height: 250, left: 285, width: 485 }}
         >
           <span className="font-dark-souls tracking-wider text-[26px] leading-8">
             Special Rules:
