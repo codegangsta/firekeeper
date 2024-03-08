@@ -1,55 +1,56 @@
 ---
 interface Props {
-	title: string;
+  title: string;
 }
 
 const { title } = Astro.props;
+import "../styles/globals.css";
 ---
 
 <!doctype html>
-<html class="bg-zinc-950 text-zinc-50 antialiased" lang="en">
-	<head>
-		<meta charset="UTF-8" />
-		<meta name="description" content="Astro description" />
-		<meta name="viewport" content="width=device-width" />
-		<link rel="icon" type="image/svg+xml" href="/favicon.svg" />
-		<meta name="generator" content={Astro.generator} />
-		<title>{title}</title>
-	</head>
-	<body>
-		<slot />
-	</body>
+<html class="dark bg-zinc-950 text-zinc-50 antialiased" lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="description" content="Astro description" />
+    <meta name="viewport" content="width=device-width" />
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+    <meta name="generator" content={Astro.generator} />
+    <title>{title}</title>
+  </head>
+  <body>
+    <slot />
+  </body>
 </html>
 <style is:global>
-/* Register your custom font family and tell the browser where to find it. */
-@font-face {
-  font-family: 'OptimusPrinceps';
-  src: url('/fonts/OptimusPrinceps.ttf');
-  font-weight: normal;
-  font-style: normal;
-  font-display: swap;
-}
+  /* Register your custom font family and tell the browser where to find it. */
+  @font-face {
+    font-family: "OptimusPrinceps";
+    src: url("/fonts/OptimusPrinceps.ttf");
+    font-weight: normal;
+    font-style: normal;
+    font-display: swap;
+  }
 
-@font-face {
-  font-family: 'AdobeCaslonPro';
-  src: url('/fonts/AdobeCaslonProSemibold.ttf');
-  font-weight: normal;
-  font-style: normal;
-  font-display: swap;
-}
+  @font-face {
+    font-family: "AdobeCaslonPro";
+    src: url("/fonts/AdobeCaslonProSemibold.ttf");
+    font-weight: normal;
+    font-style: normal;
+    font-display: swap;
+  }
 
-@font-face {
-  font-family: 'AdobeCaslonPro';
-  src: url('/fonts/AdobeCaslonProBold.otf');
-  font-weight: bold;
-  font-style: normal;
-  font-display: swap;
-}
+  @font-face {
+    font-family: "AdobeCaslonPro";
+    src: url("/fonts/AdobeCaslonProBold.otf");
+    font-weight: bold;
+    font-style: normal;
+    font-display: swap;
+  }
 
-body {
-  font-family: 'AdobeCaslonPro', sans-serif;
-}
-.font-dark-souls {
-  font-family: 'OptimusPrinceps', sans-serif;
-}
+  body {
+    font-family: "AdobeCaslonPro", sans-serif;
+  }
+  .font-dark-souls {
+    font-family: "OptimusPrinceps", sans-serif;
+  }
 </style>
