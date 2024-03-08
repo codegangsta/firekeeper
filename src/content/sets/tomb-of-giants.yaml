@@ -220,6 +220,36 @@ encounters:
         node2: [skeleton-soldier, skeleton-soldier]
         node3: treasure-chest
         node4: lever
+        trap: true
+
+  - id: pitch-black
+    name: Pitch Black
+    flavor: "These are sewers most foul, Carrion rats gnaw at your ankles,\nand corpse gas stains the air, causing you to choke."
+    difficulty: "2"
+    objective: Kill all Necromancers.
+    rewards:
+      - kind: Souls
+        value: "{{playerCount}}+2 Souls"
+      - kind: Draw
+        value: "1x Event"
+      - kind: Refresh
+        value: Estus Flask
+    specialRules:
+      - "{{'darkness'|keyword}}"
+      - At the end of each character turn, that character suffers 1 damage.
+    tiles:
+      - entrance: top
+        exit: right
+        node1: [skeleton-archer, necromancer]
+        node2: [skeleton-soldier]
+        node3: gravestone
+        node4: barrel
+        trap: true
+      - node1: [skeleton-soldier, skeleton-soldier]
+        node2: [necromancer]
+        node3: gravestone
+        node4: treasure-chest
+        trap: true
 
 events: []
 
