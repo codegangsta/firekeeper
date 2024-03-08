@@ -303,6 +303,40 @@ encounters:
       - node1: [skeleton-soldier, skeleton-soldier]
         node2: [giant-skeleton-soldier]
 
+  - id: the-locked-grave
+    name: The Locked Grave
+    flavor: "The passage ahead ends in a stout door, sealed by ancient lock,\nbut where there is a lock there must also be a key..."
+    difficulty: "3"
+    objective: Open all chests.
+    rewards:
+      - kind: Souls
+        value: 2x Souls per enemy killed
+      - kind: Draw
+        value: 1x Event
+      - kind: Trial
+        value: Dragon Scale
+      - kind: Refresh
+        value: Estus Flask
+    specialRules:
+      - "{{'trial'|keyword}}: Kill the Skeleton Beast"
+      - "If the lever is activated, spawn a Skeleton Beast on tile three, on the closes enemy spawn node to the character."
+    tiles:
+      - entrance: bottom
+        exit: top
+        node1: [giant-skeleton-archer]
+        node2: [skeleton-soldier]
+        node3: gravestone
+      - exit: left
+        node1: [giant-skeleton-soldier]
+        node2: [necromancer]
+        node3: lever
+        node4: barrel
+        trap: true
+      - node1: [giant-skeleton-archer]
+        node2: [skeleton-soldier, skeleton-soldier]
+        node3: treasure-chest
+        node4: treasure-chest
+
 events: []
 
 enemies:
