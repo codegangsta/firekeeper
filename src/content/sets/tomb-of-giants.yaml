@@ -349,8 +349,7 @@ encounters:
         value: Divine Blessing
       - kind: Shortcut
     specialRules:
-      - "Place the skeleton ball token on the [!], with the arrow facing towards [!]. At the end of each enemy turn, move the token three nodes in the direction of the arrow. If the token hits a wall, flip the token so that the arrow faces the opposite direction."
-      - "Models cannot move onto a node containing the skeleton ball. If the token moves onto a node containing one or more models, each model is pushed to an adjacent square and suffers 2 damage."
+      - "Place the skeleton ball token on the [!], with the arrow facing towards [!]. At the end of each enemy turn, move the token three nodes in the direction of the arrow. If the token hits a wall, flip the token so that the arrow faces the opposite direction.\nModels cannot move onto a node containing the skeleton ball. If the token moves onto a node containing one or more models, each model is pushed to an adjacent square and suffers 2 damage."
     tiles:
       - entrance: bottom
         exit: top

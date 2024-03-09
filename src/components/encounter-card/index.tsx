@@ -3,6 +3,7 @@ import { liquify } from "../../utils/liquid";
 import TileItems from "./tile-items";
 import Tile from "./tile";
 import type { Liquid } from "liquidjs";
+import { cn } from "../../utils/styles";
 
 interface Props {
   engine: Liquid;
@@ -131,7 +132,10 @@ export default function EncounterCard({
             {encounter.specialRules.map((rule, index) => (
               <span
                 key={index}
-                className="font-medium whitespace-pre-wrap"
+                className={cn(
+                  "font-medium whitespace-pre-wrap",
+                  rule.length > 400 ? "text-[22px]" : "",
+                )}
                 dangerouslySetInnerHTML={{
                   __html: liquify(engine, rule),
                 }}
