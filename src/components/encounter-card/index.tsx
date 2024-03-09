@@ -40,7 +40,7 @@ export default function EncounterCard({
 
   return (
     <div
-      className="rounded-[16px] border border-zinc-800 overflow-clip sm:hover:scale-110 md:hover:scale-125 transition-transform hover:z-10 hover:shadow-2xl cursor-pointer"
+      className="card rounded-[16px] border border-zinc-800 overflow-clip"
       style={{
         width: 807 * scale,
         height: 1397 * scale,
@@ -121,7 +121,7 @@ export default function EncounterCard({
         </div>
         {/* Special Rules */}
         <div
-          className="absolute text-black/70 font-semibold text-2xl flex flex-col leading-7 inset-x-0 border border-red-400"
+          className="absolute text-black/70 font-semibold text-2xl flex flex-col leading-7 inset-x-0"
           style={{ top: 370, height: 250, left: 285, width: 485 }}
         >
           <span className="font-dark-souls tracking-wider text-[26px] leading-8">

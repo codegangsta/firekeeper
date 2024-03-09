@@ -5,6 +5,7 @@ interface Props {
 
 const { title } = Astro.props;
 import "../styles/globals.css";
+import "@fontsource-variable/inter"
 ---
 
 <!doctype html>
@@ -48,9 +49,15 @@ import "../styles/globals.css";
   }
 
   body {
+    font-family: 'Inter Variable', sans-serif;
+  }
+  .card {
     font-family: "AdobeCaslonPro", sans-serif;
   }
   .font-dark-souls {
     font-family: "OptimusPrinceps", sans-serif;
+  }
+  .font-inter {
+    font-family: "Inter", sans-serif;
   }
 </style>
