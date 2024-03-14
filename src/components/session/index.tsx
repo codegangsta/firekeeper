@@ -4,6 +4,7 @@ import ReactFlow, {
   applyNodeChanges,
   type Node,
   type NodeChange,
+  SelectionMode,
 } from "reactflow";
 import "reactflow/dist/style.css";
 import Card from "./card";
@@ -63,7 +64,13 @@ export default function Session() {
         nodeTypes={nodeTypes}
         draggable={true}
         onNodesChange={onNodesChange}
+        snapToGrid
         fitView
+        zoomOnPinch
+        zoomOnScroll
+        selectionMode={SelectionMode.Full}
+        selectionOnDrag
+        nodeDragThreshold={10}
         fitViewOptions={{
           padding: 1,
         }}
