@@ -5,6 +5,8 @@ import ReactFlow, {
   type Node,
   type NodeChange,
   SelectionMode,
+  NodeToolbar,
+  Panel,
 } from "reactflow";
 import "reactflow/dist/style.css";
 import Card from "./card";
@@ -21,7 +23,6 @@ export default function Session() {
       position: { x: 100, y: 100 },
       type: "card",
       data: {
-        src: "/images/card-test.jpg",
         width: 250,
         height: 350,
       },
@@ -68,15 +69,23 @@ export default function Session() {
         fitView
         zoomOnPinch
         zoomOnScroll
-        selectionMode={SelectionMode.Full}
-        selectionOnDrag
+        nodesDraggable={false}
         nodeDragThreshold={10}
+        onDragOver={(event) => console.log("dragover", event)}
         fitViewOptions={{
           padding: 1,
         }}
       >
         <Background />
         <Controls />
+        <Panel
+          position="bottom-center"
+          className="w-full border-t border-zinc-800"
+        >
+          <div className="flex flex-row gap-2 bg-zinc-900 p-6">
+            <img src="/images/card-test.jpg" width="150" />
+          </div>
+        </Panel>
       </ReactFlow>
     </div>
   );
