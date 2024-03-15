@@ -25,6 +25,7 @@ export default function Session() {
       data: {
         width: 250,
         height: 350,
+        label: "Encounter 1",
       },
       connectable: false,
     },
@@ -33,20 +34,9 @@ export default function Session() {
       position: { x: 400, y: 100 },
       type: "card",
       data: {
-        src: "/images/card-test.jpg",
         width: 250,
         height: 350,
-      },
-      connectable: false,
-    },
-    {
-      id: "3",
-      position: { x: 700, y: 100 },
-      type: "card",
-      data: {
-        src: "/images/card-test.jpg",
-        width: 250,
-        height: 350,
+        label: "Encounter 2",
       },
       connectable: false,
     },
@@ -71,7 +61,6 @@ export default function Session() {
         zoomOnScroll
         nodesDraggable={false}
         nodeDragThreshold={10}
-        onDragOver={(event) => console.log("dragover", event)}
         fitViewOptions={{
           padding: 1,
         }}
@@ -79,11 +68,21 @@ export default function Session() {
         <Background />
         <Controls />
         <Panel
-          position="bottom-center"
-          className="w-full border-t border-zinc-800"
+          position="bottom-right"
+          className="-mb-[200px] px-24 md:px-[100px]"
         >
-          <div className="flex flex-row gap-2 bg-zinc-900 p-6">
-            <img src="/images/card-test.jpg" width="150" draggable />
+          <div className="flex flex-row p-6 w-full justify-center">
+            {[0, 1, 2, 3].map((id, index) => (
+              <img
+                src="/images/card-test.jpg"
+                width="250"
+                className="hover:scale-125 hover:rotate-1 hover:z-10 origin-bottom rounded-2xl transition-transform duration-200 drop-shadow border border-zinc-900 -mx-20 -mb-[100px]"
+                style={{
+                  rotate: `${index * 3 - (4 / 2) * 3}deg`,
+                }}
+                draggable
+              />
+            ))}
           </div>
         </Panel>
       </ReactFlow>
