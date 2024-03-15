@@ -83,7 +83,7 @@ export default function Session() {
           className="w-full border-t border-zinc-800"
         >
           <div className="flex flex-row gap-2 bg-zinc-900 p-6">
-            <img src="/images/card-test.jpg" width="150" />
+            <img src="/images/card-test.jpg" width="150" draggable />
           </div>
         </Panel>
       </ReactFlow>
